@@ -11,6 +11,7 @@ public class MouseManager : MonoBehaviour
     public Vector2 area_limits_x = new Vector2(-100, 100);
     public Vector2 area_limits_y = new Vector2(-100, 100);
     public Vector2 area_limits_z = new Vector2(-100, 100);
+    public int max_zoom_out = 100;
     private Vector2 moused;
     public Camera cam;
     // Start is called before the first frame update
@@ -48,10 +49,13 @@ public class MouseManager : MonoBehaviour
 
         pos.x = Mathf.Clamp(pos.x, area_limits_x[0], area_limits_x[1]);
         pos.z = Mathf.Clamp(pos.z, area_limits_y[0], area_limits_y[1]);
-        Debug.Log(pos);
         cam.transform.position = pos;
 
-        cam.transform.Translate(Input.mouseScrollDelta.y * Vector3.forward * zoom_speed * Time.deltaTime);
+        float wheel_delta = Input.mouseScrollDelta.y;
+        if ((wheel_delta > 0 && pos.y <= 10) || (wheel_delta < 0 && pos.y >= max_zoom_out)) {
+            wheel_delta = 0;
+        }
+        cam.transform.Translate(wheel_delta * Vector3.forward * zoom_speed * Time.deltaTime);
 
     }
 }
