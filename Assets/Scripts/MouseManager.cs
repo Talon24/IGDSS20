@@ -9,6 +9,7 @@ public class MouseManager : MonoBehaviour
     public float pan_speed = 20;
     public float zoom_speed = 1000;
     private Vector2 moused;
+    public Camera cam;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class MouseManager : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        Vector3 pos = transform.position;
+        Vector3 pos = cam.transform.position;
         if (Input.GetKey("w")){
             pos.x -= pan_speed * Time.deltaTime;
         }
@@ -41,9 +42,9 @@ public class MouseManager : MonoBehaviour
         {
             pos.y -= pan_speed * Time.deltaTime;
         }
-        transform.position = pos;
+        cam.transform.position = pos;
 
-        transform.Translate(Input.mouseScrollDelta.y * Vector3.forward * zoom_speed * Time.deltaTime);
+        cam.transform.Translate(Input.mouseScrollDelta.y * Vector3.forward * zoom_speed * Time.deltaTime);
 
     }
 }
