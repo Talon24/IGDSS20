@@ -44,9 +44,10 @@ public class GameManager : MonoBehaviour
                 {
                     position = new Vector3(((x - 1) / 2 * edge_length) + 8.66f, height, (y * long_diameter) + 5);
                 }
-                Debug.Log(pixel_val);
 
-                Object.Instantiate(tile, position, new Quaternion());
+                float rotation =  360f / 6f * Random.Range(0, 5);
+                Debug.Log(rotation);
+                Object.Instantiate(tile, position, Quaternion.Euler(0, rotation, 0));
                 
             }
         }
