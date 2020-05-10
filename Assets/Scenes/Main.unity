@@ -166,7 +166,7 @@ PrefabInstance:
     - target: {fileID: 4735863466978198210, guid: ff7ef13f88a71c94eb42898019398dcd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4735863466978198210, guid: ff7ef13f88a71c94eb42898019398dcd,
         type: 3}
@@ -220,7 +220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140006872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -12.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1511743}
@@ -282,7 +282,7 @@ PrefabInstance:
     - target: {fileID: 6690385353024243809, guid: d21540575b5070f4d898a72155baed52,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6690385353024243809, guid: d21540575b5070f4d898a72155baed52,
         type: 3}
@@ -406,7 +406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431373865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.66, y: 0, z: 5}
+  m_LocalPosition: {x: 8.66, y: -12.3, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 806527185}
@@ -680,15 +680,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4fb070738f3544ea560ef08186d72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max_in: 0
-  max_out: 200
   pan_speed: 200
   zoom_speed: 1000
-  area_limits_x: {x: -100, y: 100}
-  area_limits_y: {x: -100, y: 100}
-  area_limits_z: {x: -100, y: 100}
+  area_limits_x: {x: -100, y: 500}
+  area_limits_y: {x: -100, y: 500}
+  max_zoom_in: 10
   max_zoom_out: 100
   cam: {fileID: 512232609}
+  tile_layer_mask: 8
 --- !u!4 &834136087
 Transform:
   m_ObjectHideFlags: 0
@@ -995,7 +994,7 @@ PrefabInstance:
     - target: {fileID: 3904172423750652247, guid: beaf3e6eeb231784387cb99da90a7c7d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3904172423750652247, guid: beaf3e6eeb231784387cb99da90a7c7d,
         type: 3}
@@ -1294,7 +1293,7 @@ PrefabInstance:
     - target: {fileID: 6778234312165509336, guid: 476946919e1d5104fb4c93f1dc2db5e9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6778234312165509336, guid: 476946919e1d5104fb4c93f1dc2db5e9,
         type: 3}
@@ -1369,7 +1368,7 @@ PrefabInstance:
     - target: {fileID: 6146388628921357517, guid: f549c24ecaa45cb498514352a3675d1c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6146388628921357517, guid: f549c24ecaa45cb498514352a3675d1c,
         type: 3}
@@ -1423,6 +1422,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd580981bf7ab5845976a690fd1035a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heightmap: {fileID: 2800000, guid: 5c2448c2ffa208243962d18e173c7b21, type: 3}
+  water_tile: {fileID: 928861406}
+  sand_tile: {fileID: 1604592396}
+  grass_tile: {fileID: 332625774}
+  forest_tile: {fileID: 4292088403371262198}
+  stone_tile: {fileID: 4219415745835712564}
+  mountain_tile: {fileID: 1450067464}
 --- !u!4 &1768092942
 Transform:
   m_ObjectHideFlags: 0
@@ -1632,7 +1638,7 @@ PrefabInstance:
     - target: {fileID: 339247213230004273, guid: 2a914b6a4ef15cb4ca77257050f15f29,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 339247213230004273, guid: 2a914b6a4ef15cb4ca77257050f15f29,
         type: 3}
@@ -1761,13 +1767,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2063021149}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.66, y: 0, z: 5}
+  m_LocalPosition: {x: 17.32323, y: -12.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 928861406}
   - {fileID: 1604592396}
-  - {fileID: 4292088403371262198}
   - {fileID: 332625774}
+  - {fileID: 4292088403371262198}
   - {fileID: 4219415745835712564}
   - {fileID: 1450067464}
   m_Father: {fileID: 0}
@@ -1898,7 +1904,7 @@ PrefabInstance:
     - target: {fileID: 6642585004613084047, guid: d9bd2d55e6fb562418da21e1ff58cc56,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6642585004613084047, guid: d9bd2d55e6fb562418da21e1ff58cc56,
         type: 3}
