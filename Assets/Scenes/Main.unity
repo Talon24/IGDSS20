@@ -682,8 +682,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pan_speed: 200
   zoom_speed: 1000
-  area_limits_x: {x: -100, y: 500}
-  area_limits_y: {x: -100, y: 500}
+  area_limits_x: {x: 0, y: 500}
+  area_limits_y: {x: 0, y: 500}
   max_zoom_in: 10
   max_zoom_out: 100
   cam: {fileID: 512232609}
