@@ -58,12 +58,37 @@ public class MouseManager : MonoBehaviour
 
 
 
-        if (Input.GetMouseButton(1)) {
-            float old_y = cam.transform.position.y;
-            float pan_factor = Mathf.Max(((1.0f / (max_zoom_out - old_y) / max_zoom_out) * Time.deltaTime) * 500000.0f, 0.0f);
-            // Debug.Log(pan_factor);
-            cam.transform.Translate(new Vector3(-Input.GetAxis("Mouse X") * pan_factor, -Input.GetAxis("Mouse Y") * pan_factor, 0));
-            cam.transform.position = new Vector3(cam.transform.position.x, old_y, cam.transform.position.z);
+        float distance = 0;
+        bool rayhit = false;
+        if (Input.GetMouseButton(1))
+        {
+            RaycastHit hit_;
+            Ray ray_ = cam.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray_, out hit_, 200.0f, 1 << tile_layer_mask))
+                if (hit_.transform != null)
+                {
+                    distance = Vector3.Distance(hit_.transform.position, cam.transform.position);
+                    rayhit = true;
+                }
+            if (!rayhit) {
+                float old_y = cam.transform.position.y;
+                float pan_factor = Mathf.Max(((1.0f / (max_zoom_out - old_y) / max_zoom_out) * Time.deltaTime) * 500000.0f, 0.0f);
+                // float pan_factor = ((((old_y) / max_zoom_out)) * Time.deltaTime * 100.0f);
+                // Screen.currentResolution
+                // Debug.Log(string.Format("X: {0}, Y: {1}", Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")));
+                cam.transform.Translate(new Vector3(-Input.GetAxis("Mouse X") * pan_factor, -Input.GetAxis("Mouse Y") * pan_factor, 0));
+                // Fix elevation of camera
+                cam.transform.position = new Vector3(cam.transform.position.x, old_y, cam.transform.position.z);
+            } else {
+                float old_y = cam.transform.position.y;
+
+                float pan_factor = Mathf.Sqrt(((distance * Time.deltaTime) * 0.35f));
+                Debug.Log(((distance * Time.deltaTime) * 0.35f));
+                cam.transform.Translate(new Vector3(-Input.GetAxis("Mouse X") * pan_factor, -Input.GetAxis("Mouse Y") * pan_factor, 0));
+                // Fix elevation of camera
+                cam.transform.position = new Vector3(cam.transform.position.x, old_y, cam.transform.position.z);
+            }
         }
 
         if (Input.GetMouseButtonDown(0)) {
@@ -77,8 +102,5 @@ public class MouseManager : MonoBehaviour
             }
 
         }
-
-
-
     }
 }
