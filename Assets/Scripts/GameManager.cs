@@ -29,12 +29,22 @@ public class GameManager : MonoBehaviour
                 float height = 0f;
 
                 Transform tile = null;
-                if (0.0f == (float) pixel_val) {tile = water_tile;}
-                else if (0.0 < pixel_val && pixel_val <= 0.2f) { tile = sand_tile; height = 1f;}
-                else if (0.2 < pixel_val && pixel_val <= 0.4f) { tile = grass_tile; height = 3f; }
-                else if (0.4 < pixel_val && pixel_val <= 0.6f) { tile = forest_tile; height = 4f; }
-                else if (0.6 < pixel_val && pixel_val <= 0.8f) { tile = stone_tile; height = 6f; }
-                else if (0.8 < pixel_val && pixel_val <= 1.0f) { tile = mountain_tile; height = 10f; }
+                // Fixed height
+                // if (0.0f == (float) pixel_val) {tile = water_tile;}
+                // else if (0.0 < pixel_val && pixel_val <= 0.2f) { tile = sand_tile; height = 1f;}
+                // else if (0.2 < pixel_val && pixel_val <= 0.4f) { tile = grass_tile; height = 3f; }
+                // else if (0.4 < pixel_val && pixel_val <= 0.6f) { tile = forest_tile; height = 4f; }
+                // else if (0.6 < pixel_val && pixel_val <= 0.8f) { tile = stone_tile; height = 6f; }
+                // else if (0.8 < pixel_val && pixel_val <= 1.0f) { tile = mountain_tile; height = 10f; }
+
+                // Heightmap height
+                float multiplicator = 30f;
+                if (0.0f == (float)pixel_val) { tile = water_tile; }
+                else if (0.0 < pixel_val && pixel_val <= 0.2f) { tile = sand_tile; height = pixel_val * multiplicator; }
+                else if (0.2 < pixel_val && pixel_val <= 0.4f) { tile = grass_tile; height = pixel_val * multiplicator; }
+                else if (0.4 < pixel_val && pixel_val <= 0.6f) { tile = forest_tile; height = pixel_val * multiplicator; }
+                else if (0.6 < pixel_val && pixel_val <= 0.8f) { tile = stone_tile; height = pixel_val * multiplicator; }
+                else if (0.8 < pixel_val && pixel_val <= 1.0f) { tile = mountain_tile; height = pixel_val * multiplicator; }
 
                 if (x % 2 == 0)
                 {
@@ -46,7 +56,7 @@ public class GameManager : MonoBehaviour
                 }
 
                 float rotation =  360f / 6f * Random.Range(0, 5);
-                Debug.Log(rotation);
+                // Debug.Log(rotation);
                 Object.Instantiate(tile, position, Quaternion.Euler(0, rotation, 0));
                 
             }
