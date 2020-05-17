@@ -14,10 +14,14 @@ public class MouseManager : MonoBehaviour
     public int tile_layer_mask = 8;
     private Vector3 previous_raycast_hit;
     private float previous_raycast_length;
+    public GameManager manager;
+
+    private Vector2 area_limits2;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        area_limits2 = manager.get_map_size();
     }
 
     // Update is called once per frame
@@ -48,8 +52,8 @@ public class MouseManager : MonoBehaviour
         //     pos.y -= pan_speed * Time.deltaTime;
         // }
 
-        pos.x = Mathf.Clamp(pos.x, area_limits_x[0], area_limits_x[1]);
-        pos.z = Mathf.Clamp(pos.z, area_limits_y[0], area_limits_y[1]);
+        pos.x = Mathf.Clamp(pos.x, 50, area_limits2[1]);
+        pos.z = Mathf.Clamp(pos.z, 0, area_limits2[1]);
         cam.transform.position = pos;
 
         float wheel_delta = Input.mouseScrollDelta.y;
@@ -59,10 +63,6 @@ public class MouseManager : MonoBehaviour
         }
         cam.transform.Translate(wheel_delta * Vector3.forward * zoom_speed * Time.deltaTime);
 
-
-
-        float distance = 0;
-        bool rayhit = false;
 
         // click happened
         if (Input.GetMouseButtonDown(1)) {
@@ -104,9 +104,9 @@ public class MouseManager : MonoBehaviour
                         // Debug.Log(string.Format("From: {0}\n                          To:{1}", previous_raycast_hit, ray_vector));
 
 
-                        float pos_x = Mathf.Clamp(cam.transform.position.x + movement.x, area_limits_x[0], area_limits_x[1]);
+                        float pos_x = Mathf.Clamp(cam.transform.position.x + movement.x, 50, area_limits2[0]);
                         float pos_y = cam.transform.position.y;
-                        float pos_z = Mathf.Clamp(cam.transform.position.z + movement.z, area_limits_y[0], area_limits_y[1]);
+                        float pos_z = Mathf.Clamp(cam.transform.position.z + movement.z, 0, area_limits2[1]);
                         cam.transform.position = new Vector3(pos_x, pos_y, pos_z);
 
                     }

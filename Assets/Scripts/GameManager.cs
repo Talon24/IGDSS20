@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour
     public Transform forest_tile;
     public Transform stone_tile;
     public Transform mountain_tile;
+
+    public Vector2 get_map_size(){
+        float z = heightmap.width * 10f;
+        float x = heightmap.height * 11.5470f;
+        return new Vector2(x, z);
+    }
     void Start()
     {
         float edge_length = 17.323232f;
