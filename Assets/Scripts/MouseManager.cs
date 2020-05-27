@@ -66,7 +66,7 @@ public class MouseManager : MonoBehaviour
 
         // click happened
         if (Input.GetMouseButtonDown(1)) {
-            Debug.Log("Button down!");
+            // Debug.Log("Button down!");
             RaycastHit hit__;
             Ray ray__ = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray__, out hit__, 2000.0f, 1 << tile_layer_mask))
