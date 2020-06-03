@@ -171,7 +171,12 @@ public class MouseManager : MonoBehaviour
                     }
                     if (istile){
                         Tile tile = hit.collider.GetComponent<Tile>();
-                        manager.FindNeighborsOfTile(tile);
+                        Debug.Log(string.Format("Clicked tile is {0}", tile.name));
+                        // Debug.Log(string.Join(", ", tile.neighbors));
+                        // foreach (Tile tile_ in tile.neighbors)
+                        // {
+                        //     Debug.Log(string.Format("{0}", tile_.type.name));
+                        // }
                     }
                 }
             }
