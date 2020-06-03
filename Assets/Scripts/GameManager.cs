@@ -70,6 +70,9 @@ public class GameManager : MonoBehaviour
 
             }
         }
+    foreach (Tile tile in map) {
+        tile.neighbors = FindNeighborsOfTile(tile);
+    }
     }
 
     public Vector3 position_absolute(float x, float y, float z)
@@ -258,7 +261,7 @@ public class GameManager : MonoBehaviour
                     yref % 2 == 0 && (((x + y) % 2 != (xref + yref) % 2) || x < xref)  // if row is even, upright and downright corner excluded
                     ){
                     // Debug.Log(string.Format("x: {0}, y: {1}", x, y));
-                        result.Add(map[x, y]);
+                        result.Add(map[y, x]);
                     }
             }
         }
