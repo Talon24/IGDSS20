@@ -155,7 +155,17 @@ public class MouseManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 200.0f, 1 << tile_layer_mask)) {
                 if (hit.transform != null){
-                    Debug.Log(string.Format("Clicked tile is {0}", hit.transform.gameObject.name));
+                    // Debug.Log(string.Format("Clicked tile is {0}", hit.transform.gameObject.name));
+                    // Debug.Log(string.Format("Clicked tile is {0}", hit.transform.gameObject.GetType()));
+                    try
+                    {
+                        Tile tile = hit.collider.GetComponent<Tile>();
+                        Debug.Log(string.Format("Clicked tile is {0}", tile.name));
+                    }
+                    catch (System.NullReferenceException)
+                    {
+                        Debug.Log(string.Format("Nothing targetted."));   
+                    }
                 }
             }
 
