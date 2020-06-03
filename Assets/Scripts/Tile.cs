@@ -30,7 +30,7 @@ public class Tile : MonoBehaviour{
 
     public Vector3 position_absolute() {
         Vector3 abs_position;
-        Debug.Log((position.x, position.z));
+        // Debug.Log((position.x, position.z));
         if (position.x % 2 == 0)
         {
             abs_position = new Vector3(position.x / 2 * edge_length, position.y, position.z * long_diameter);

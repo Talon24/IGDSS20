@@ -157,14 +157,21 @@ public class MouseManager : MonoBehaviour
                 if (hit.transform != null){
                     // Debug.Log(string.Format("Clicked tile is {0}", hit.transform.gameObject.name));
                     // Debug.Log(string.Format("Clicked tile is {0}", hit.transform.gameObject.GetType()));
+                    bool istile = false;
                     try
-                    {
-                        Tile tile = hit.collider.GetComponent<Tile>();
-                        Debug.Log(string.Format("Clicked tile is {0}", tile.name));
+                    {   
+                        hit.collider.GetComponent<Tile>();
+                        istile = true;
+                        // Debug.Log(string.Format("Clicked tile is {0}", tile.name));
+                        // Debug.Log(string.Format("Clicked tile is {0}", tile.position));
                     }
                     catch (System.NullReferenceException)
                     {
                         Debug.Log(string.Format("Nothing targetted."));   
+                    }
+                    if (istile){
+                        Tile tile = hit.collider.GetComponent<Tile>();
+                        manager.FindNeighborsOfTile(tile);
                     }
                 }
             }

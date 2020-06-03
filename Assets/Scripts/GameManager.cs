@@ -14,17 +14,25 @@ public class GameManager : MonoBehaviour
     public Transform mountain_tile;
 
     private Tile[,] map;
+    private float long_diameter = 10f;
+    private float edge_length = 17.323232f;
 
     public Vector2 get_map_size(){
         float z = heightmap.width * 10f;
         float x = heightmap.height * 11.5470f;
         return new Vector2(x, z);
     }
+    public Vector2 get_map_size_grid()
+    {
+        float z = heightmap.width;
+        float x = heightmap.height;
+        return new Vector2(x, z);
+    }
     void Start()
     {
         // float edge_length = 17.323232f;
         // float long_diameter = 10f;
-        map = new Tile[heightmap.height, heightmap.width];
+        this.map = new Tile[heightmap.height, heightmap.width];
         for (int y = 0; y < heightmap.height; y++){
             for (int x = 0; x < heightmap.width; x++)
             {
@@ -52,11 +60,31 @@ public class GameManager : MonoBehaviour
 
                 float rotation =  360f / 6f * Random.Range(0, 5);
 
-                map[x, y] = new Tile(tile, x, y, height, rotation);
-                map[x, y].place();
-                
+                // map[x, y] = new Tile(tile, x, y, height, rotation);
+                // map[x, y].place();
+                Transform tileObject = Instantiate(tile, position_absolute(x, height, y), Quaternion.Euler(0, rotation, 0));
+                // Debug.Log(tileObject.GetComponent<Tile>());
+                Tile tile_ = tileObject.GetComponent<Tile>();
+                tile_.position = new Vector3(x, height, y);
+                map[x, y] = tile_;
+
             }
         }
+    }
+
+    public Vector3 position_absolute(float x, float y, float z)
+    {
+        Vector3 abs_position;
+        // Debug.Log((position.x, position.z));
+        if (x % 2 == 0)
+        {
+            abs_position = new Vector3(x / 2 * edge_length, y, z * long_diameter);
+        }
+        else
+        {
+            abs_position = new Vector3(((x - 1) / 2 * edge_length) + 8.66f, y, (z * long_diameter) + 5);
+        }
+        return abs_position;
     }
 
     // Update is called once per frame
@@ -195,12 +223,47 @@ public class GameManager : MonoBehaviour
     }
 
     //Returns a list of all neighbors of a given tile
-    private List<Tile> FindNeighborsOfTile(Tile t)
+    public List<Tile> FindNeighborsOfTile(Tile t)
     {
         List<Tile> result = new List<Tile>();
+        Vector3 position = t.position;
+        Vector2 map_size = get_map_size_grid();
+        // Debug.Log(string.Format("",));
 
-        //TODO: put all neighbors in the result list
+        // Debug.Log(string.Format("x start: {0}, x end: {1}", (Mathf.Max(0, (int)position.z - 1), (Mathf.Min(map_size.x, (int)position.z + 1)))));
+        // Debug.Log(string.Format("\nx start: {0}, x end: {1}\ty start: {2}, y end: {3}",
+        //                         Mathf.Max(0, (int)position.z - 1), Mathf.Min(map_size.x -1, (int)position.z + 1),
+        //                         Mathf.Max(0, (int)position.x - 1), Mathf.Min(map_size.x -1, (int)position.x + 1)));
+        int xref = (int)position.z;
+        int yref = (int)position.x;
+        // Debug.Log(string.Format("Origin - x: {0}, y: {1}", xref, yref));
 
+        /*
+        o -> included, x -> excluded. self is always exluded. depending on the row, two gridsurroundings are not in the hexagrid-surroundings
+        Odd: 
+          o o     x o o
+         o x o -> o x o
+          o o     x o o
+        Even: 
+          o o     o o x
+         o x o -> o x o
+          o o     o o x
+        */
+        for (int x = Mathf.Max(0, xref - 1); x <= Mathf.Min(map_size.x - 1, xref + 1); x++){
+            for (int y = Mathf.Max(0, yref - 1); y <= Mathf.Min(map_size.x - 1, yref + 1); y++){
+                // Debug.Log(string.Format("x: {0}, y: {1}", x, y));
+                if (
+                    yref % 2 == 1 && (((x + y) % 2 != (xref + yref) % 2) || x > xref)  // if row is odd, upleft and downleft corner excluded
+                    ||
+                    yref % 2 == 0 && (((x + y) % 2 != (xref + yref) % 2) || x < xref)  // if row is even, upright and downright corner excluded
+                    ){
+                    // Debug.Log(string.Format("x: {0}, y: {1}", x, y));
+                        result.Add(map[x, y]);
+                    }
+            }
+        }
+
+        // Debug.Log(string.Join(", ", result));
         return result;
     }
     #endregion
