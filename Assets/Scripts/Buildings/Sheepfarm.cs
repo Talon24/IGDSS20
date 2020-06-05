@@ -12,6 +12,7 @@ public class Sheepfarm : Building
         upkeep = 20;
         inputRessource = null;
         outputRessource = new Wool();
+        outputAmount = 1;
         ProcessingTime = 30;
         build_requirement = null;
 
