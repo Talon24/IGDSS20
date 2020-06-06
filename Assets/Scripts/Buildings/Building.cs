@@ -11,5 +11,5 @@ public abstract class Building : MonoBehaviour
     public Ressource outputRessource;
     public int outputAmount = 1;
     public int ProcessingTime;
-    public Tile build_requirement;
+    public Tile[] build_requirement;
 }
