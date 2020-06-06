@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
                 // Debug.Log(tileObject.GetComponent<Tile>());
                 Tile tile_ = tileObject.GetComponent<Tile>();
                 tile_.position = new Vector3(x, height, y);
+                tile_.rotation = rotation;
                 map[x, y] = tile_;
 
             }

@@ -10,6 +10,7 @@ public class Tile : MonoBehaviour{
     private float edge_length = 17.323232f;
     public List<Tile> neighbors;
     public Tile baseVersion;
+    public Tile backReference;
     public Tile alternateVersion;
 
     public Building _building; //The building on this tile
@@ -66,6 +67,18 @@ public class Tile : MonoBehaviour{
         return base.ToString();
     }
     public string test(){
+        if (baseVersion != null){
+            gameObject.SetActive(!gameObject.activeSelf);
+            Transform tileObject = Instantiate(baseVersion.transform, transform.position, Quaternion.Euler(0, this.rotation, 0));
+            // Transform new_object = Object.Instantiate(baseVersion, transform.position, new Quaternion());
+            Tile tile = tileObject.GetComponent<Tile>();
+            tile.backReference = this;
+        }
+        else {
+            backReference.gameObject.SetActive(!backReference.gameObject.activeSelf);
+            Destroy(this.gameObject);
+
+        }
         return "Hallo";
     }
 }
