@@ -161,6 +161,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: SandTileTalon Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7291895240907248749, guid: ff7ef13f88a71c94eb42898019398dcd,
+        type: 3}
+      propertyPath: baseVersion
+      value: 
+      objectReference: {fileID: 7291895240907248749, guid: ff7ef13f88a71c94eb42898019398dcd,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff7ef13f88a71c94eb42898019398dcd, type: 3}
 --- !u!4 &155982969421709699 stripped

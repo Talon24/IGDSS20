@@ -124,6 +124,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterTileTalon Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2323313313276137118, guid: 2a914b6a4ef15cb4ca77257050f15f29,
+        type: 3}
+      propertyPath: baseVersion
+      value: 
+      objectReference: {fileID: 2323313313276137118, guid: 2a914b6a4ef15cb4ca77257050f15f29,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a914b6a4ef15cb4ca77257050f15f29, type: 3}
 --- !u!4 &4940522702560398348 stripped
