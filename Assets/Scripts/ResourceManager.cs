@@ -22,6 +22,7 @@ public class ResourceManager : MonoBehaviour
     public float UFish;
     private float waitTime = 1.0f;
     private float timer = 0.0f;
+    public float eff;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +42,7 @@ public class ResourceManager : MonoBehaviour
         UPotato = 0;
         USchnapps = 0;
         UFish = 0;
+        eff = 1.0f;
     }
 
     // Update is called once per frame
@@ -73,12 +75,12 @@ public class ResourceManager : MonoBehaviour
 
     public void updateWood(float value)
     {
-        UWood += value;
+        UWood += (eff * value);
     }
 
     public void updateWool(float value)
     {
-        UWool += value;
+        UWool += (eff * value);
     }
 
     public void updatePlanks(float value)
@@ -93,7 +95,7 @@ public class ResourceManager : MonoBehaviour
 
     public void updatePotato(float value)
     {
-        UPotato += value;
+        UPotato += (eff * value);
     }
 
     public void updateSchnapps(float value)
@@ -103,6 +105,6 @@ public class ResourceManager : MonoBehaviour
 
     public void updateFish(float value)
     {
-        UFish += value;
+        UFish += (eff * value);
     }
 }
