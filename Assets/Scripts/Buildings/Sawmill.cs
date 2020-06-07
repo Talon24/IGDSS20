@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class Sawmill : Building
 {
+    public ResourceManager R;
 
-    public Sawmill()
+    //public Sawmill()
+    //    initialCost = 100;
+    //    upkeep = 10;
+    //    inputRessource = new Wood();
+    //    outputRessource = new Plank();
+    //    outputAmount = 2;
+    //    ProcessingTime = 15;
+    //    build_requirement = null
+
+    private void Start()
     {
-        initialCost = 100;
-        upkeep = 10;
-        inputRessource = new Wood();
-        outputRessource = new Plank();
-        outputAmount = 2;
-        ProcessingTime = 15;
-        build_requirement = null;
-
+        R.updateUpkeep(-10);
+        R.updateWood(-2);
+        R.updatePlanks(2);
     }
+
 }

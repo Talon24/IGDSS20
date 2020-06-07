@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class PotatoFarm : Building
 {
+    public ResourceManager R;
 
-    public PotatoFarm() {
-        initialCost = 100;
-        cost.Add(new Plank(), 2);
-        upkeep = 20;
-        inputRessource = null;
-        outputRessource = new Potato();
-        outputAmount = 1;
-        ProcessingTime = 30;
-        build_requirement = null;
+    //public PotatoFarm() {
+    //   initialCost = 100;
+    //    cost.Add(new Plank(), 2);
+    //    upkeep = 20;
+    //    inputRessource = null;
+    //    outputRessource = new Potato();
+    //    outputAmount = 1;
+    //    ProcessingTime = 30;
+    //    build_requirement = null;
 
+    private void Start()
+    {
+        R.updateUpkeep(-20);
+        R.updatePotato(1);
     }
 }

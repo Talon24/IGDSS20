@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class Sheepfarm : Building
 {
+    public ResourceManager R;
 
-    public Sheepfarm()
+    //public Sheepfarm()
+    //{
+    //    initialCost = 100;
+    //    cost.Add(new Plank(), 2);
+    //    upkeep = 20;
+    //    inputRessource = null;
+    //    outputRessource = new Wool();
+    //    outputAmount = 1;
+    //    ProcessingTime = 30;
+    //    build_requirement = null;
+
+    private void Start()
     {
-        initialCost = 100;
-        cost.Add(new Plank(), 2);
-        upkeep = 20;
-        inputRessource = null;
-        outputRessource = new Wool();
-        outputAmount = 1;
-        ProcessingTime = 30;
-        build_requirement = null;
-
+        R.updateUpkeep(-20);
+        R.updateWool(1);
     }
 }

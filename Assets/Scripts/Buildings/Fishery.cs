@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Fishery : Building
 {
+    public ResourceManager R;
 
-    // public Fishery() {
+    //public Fishery() {
     //     initialCost = 100;
     //     cost.Add(new Plank(), 2); // Das hier geht in dem unity controller nicht
     //     upkeep = 40;
@@ -15,4 +16,10 @@ public class Fishery : Building
     //     ProcessingTime = 30;
     //     build_requirement = null;
     // }
+
+    private void Start()
+    {
+        R.updateUpkeep(-40);
+        R.updateFish(1);
+    }
 }

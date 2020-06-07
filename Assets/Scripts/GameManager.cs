@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public ResourceManager R;
     // Start is called before the first frame update
     public Texture2D heightmap;
     public Transform water_tile;
@@ -94,7 +95,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        HandleKeyboardInput();
     }
 
 
@@ -102,6 +103,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] _buildingPrefabs; //References to the building prefabs
     public int _selectedBuildingPrefabIndex = 0; //The current index used for choosing a prefab to spawn from the _buildingPrefabs list
     #endregion
+    public Transform fishery;
+    public Transform lumberjack;
 
 
     #region Resources
@@ -131,7 +134,7 @@ public class GameManager : MonoBehaviour
 
     #region Methods
     //Makes the resource dictionary usable by populating the values and keys
-    void PopulateResourceDictionary()
+    /*void PopulateResourceDictionary()
     {
         _resourcesInWarehouse.Add(ResourceTypes.None, 0);
         _resourcesInWarehouse.Add(ResourceTypes.Fish, 0);
@@ -141,7 +144,8 @@ public class GameManager : MonoBehaviour
         _resourcesInWarehouse.Add(ResourceTypes.Clothes, 0);
         _resourcesInWarehouse.Add(ResourceTypes.Potato, 0);
         _resourcesInWarehouse.Add(ResourceTypes.Schnapps, 0);
-    }
+    }*/  //use resource manger script instead
+    
 
     //Sets the index for the currently selected building prefab by checking key presses on the numbers 1 to 0
     void HandleKeyboardInput()
@@ -174,22 +178,10 @@ public class GameManager : MonoBehaviour
         {
             _selectedBuildingPrefabIndex = 6;
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            _selectedBuildingPrefabIndex = 7;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            _selectedBuildingPrefabIndex = 8;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            _selectedBuildingPrefabIndex = 9;
-        }
     }
 
     //Updates the visual representation of the resource dictionary in the inspector. Only for debugging
-    void UpdateInspectorNumbersForResources()
+    /*void UpdateInspectorNumbersForResources()
     {
         _ResourcesInWarehouse_Fish = _resourcesInWarehouse[ResourceTypes.Fish];
         _ResourcesInWarehouse_Wood = _resourcesInWarehouse[ResourceTypes.Wood];
@@ -198,13 +190,13 @@ public class GameManager : MonoBehaviour
         _ResourcesInWarehouse_Clothes = _resourcesInWarehouse[ResourceTypes.Clothes];
         _ResourcesInWarehouse_Potato = _resourcesInWarehouse[ResourceTypes.Potato];
         _ResourcesInWarehouse_Schnapps = _resourcesInWarehouse[ResourceTypes.Schnapps];
-    }
+    }*/
 
     //Checks if there is at least one material for the queried resource type in the warehouse
-    public bool HasResourceInWarehoues(ResourceTypes resource)
+    /*public bool HasResourceInWarehoues(ResourceTypes resource)
     {
         return _resourcesInWarehouse[resource] >= 1;
-    }
+    }*/
 
     //Is called by MouseManager when a tile was clicked
     //Forwards the tile to the method for spawning buildings
@@ -218,12 +210,23 @@ public class GameManager : MonoBehaviour
     //Checks if the currently selected building type can be placed on the given tile and then instantiates an instance of the prefab
     private void PlaceBuildingOnTile(Tile t)
     {
+        Transform tileObject;
+        tileObject = Instantiate(sand_tile, position_absolute(t.position.x, t.position.z, t.position.y), Quaternion.Euler(0, 0, 0));
+        t = tileObject.GetComponent<Tile>();
+        //Debug.Log(t);
         //if there is building prefab for the number input
-        if (_selectedBuildingPrefabIndex < _buildingPrefabs.Length)
+        /*if (_selectedBuildingPrefabIndex == 0)
         {
-            //TODO: check if building can be placed and then istantiate it
+             if(R.Planks >= 2 && R.Money >= 100)
+            {
+                tileObject = Instantiate(fishery, position_absolute(t.position.x, t.position.z, t.position.y), Quaternion.Euler(0, 0, 0));
+                t = tileObject.GetComponent<Tile>();
+            }
 
-        }
+            tileObject = Instantiate(lumberjack, position_absolute(t.position.x, t.position.z, t.position.y), Quaternion.Euler(0, 0, 0));
+            t = tileObject.GetComponent<Tile>();
+
+        }*/
     }
 
     //Returns a list of all neighbors of a given tile

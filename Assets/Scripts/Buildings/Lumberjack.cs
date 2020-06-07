@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class Lumberjack : Building
 {
+    public ResourceManager R;
 
-    public Lumberjack()
+    //public Lumberjack()
+    //    initialCost = 100;
+    //   upkeep = 10;
+    //    inputRessource = null;
+    //    outputRessource = new Wood();
+    //    outputAmount = 1;
+    //    ProcessingTime = 15;
+    //    build_requirement = null;
+
+    private void Start()
     {
-        initialCost = 100;
-        upkeep = 10;
-        inputRessource = null;
-        outputRessource = new Wood();
-        outputAmount = 1;
-        ProcessingTime = 15;
-        build_requirement = null;
-
+        R.updateUpkeep(-10);
+        R.updateWood(1);
     }
 }
