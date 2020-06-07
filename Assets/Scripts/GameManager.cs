@@ -233,6 +233,7 @@ public class GameManager : MonoBehaviour
              if(R.Planks >= 2 && R.Money >= 100 && t.name == "SandTilefinal(Clone)")
             {
                 tileObject = Instantiate(fishery, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                Debug.Log(t.toggleVariant());
                 t = tileObject.GetComponent<Tile>();
                 //t.destroy();
             }
@@ -261,6 +262,7 @@ public class GameManager : MonoBehaviour
             if (R.Money >= 100 && t.name == "ForestTilefinal(Clone)")
             {
                 tileObject = Instantiate(lumberjack, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                Debug.Log(t.toggleVariant());
                 t = tileObject.GetComponent<Tile>();
                 //t.destroy();
             }
@@ -296,17 +298,20 @@ public class GameManager : MonoBehaviour
                 if (t.name == "GrassTilefinal(Clone)")
                 {
                     tileObject = Instantiate(sawmillg, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                    Debug.Log(t.toggleVariant());
                     t = tileObject.GetComponent<Tile>();
                     //t.destroy();
                 }
                 if(t.name == "ForestTilefinal(Clone)")
                 {
                     tileObject = Instantiate(sawmillf, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                    Debug.Log(t.toggleVariant());
                     t = tileObject.GetComponent<Tile>();
                 }
                 if(t.name == "StoneTilefinal(Clone)")
                 {
                     tileObject = Instantiate(sawmills, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                    Debug.Log(t.toggleVariant());
                     t = tileObject.GetComponent<Tile>();
                 }
                 R.Money -= 100;
@@ -317,6 +322,7 @@ public class GameManager : MonoBehaviour
             if (R.Money >= 100 && R.Planks >= 2 && t.name == "GrassTilefinal(Clone)")
             {
                 tileObject = Instantiate(sheep, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                Debug.Log(t.toggleVariant());
                 t = tileObject.GetComponent<Tile>();
 
                 for (int i = 0; i < m.Count; i++)
@@ -348,17 +354,20 @@ public class GameManager : MonoBehaviour
                 if (t.name == "GrassTilefinal(Clone)")
                 {
                     tileObject = Instantiate(clothg, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                    Debug.Log(t.toggleVariant());
                     t = tileObject.GetComponent<Tile>();
                     //t.destroy();
                 }
                 if (t.name == "ForestTilefinal(Clone)")
                 {
                     tileObject = Instantiate(clothf, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                    Debug.Log(t.toggleVariant());
                     t = tileObject.GetComponent<Tile>();
                 }
                 if (t.name == "StoneTilefinal(Clone)")
                 {
                     tileObject = Instantiate(cloths, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                    Debug.Log(t.toggleVariant());
                     t = tileObject.GetComponent<Tile>();
                 }
                 R.Planks -= 2;
@@ -370,6 +379,7 @@ public class GameManager : MonoBehaviour
             if (R.Money >= 100 && R.Planks >= 2 && t.name == "GrassTilefinal(Clone)")
             {
                 tileObject = Instantiate(potato, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                Debug.Log(t.toggleVariant());
                 t = tileObject.GetComponent<Tile>();
             }
             for (int i = 0; i < m.Count; i++)
@@ -401,17 +411,20 @@ public class GameManager : MonoBehaviour
                 if (t.name == "GrassTilefinal(Clone)")
                 {
                     tileObject = Instantiate(schnapg, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                    Debug.Log(t.toggleVariant());
                     t = tileObject.GetComponent<Tile>();
                     //t.destroy();
                 }
                 if (t.name == "ForestTilefinal(Clone)")
                 {
                     tileObject = Instantiate(schnapf, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                    Debug.Log(t.toggleVariant());
                     t = tileObject.GetComponent<Tile>();
                 }
                 if (t.name == "StoneTilefinal(Clone)")
                 {
                     tileObject = Instantiate(schnaps, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                    Debug.Log(t.toggleVariant());
                     t = tileObject.GetComponent<Tile>();
                 }
                 R.Planks -= 2;
