@@ -236,12 +236,13 @@ public class GameManager : MonoBehaviour
                 t = tileObject.GetComponent<Tile>();
                 //t.destroy();
             }
-            for (int i=0; i<m.Count; i++)
+            for (int i = 0; i < m.Count; i++)
             {
-                if(m[i].name == "WaterTilefinal(Clone)")
+                if (m[i].name == "WaterTilefinal(Clone)")
                 {
                     efficiencycount++;
                 }
+            }
                 if (efficiencycount < 1)
                     R.eff = 0;
                 else if (efficiencycount < 2)
@@ -251,7 +252,9 @@ public class GameManager : MonoBehaviour
                 else
                     R.eff = 1.0f;
                 efficiencycount = 0;
-            }
+                R.Planks -= 2;
+                R.Money -= 100;
+            
         }
         else if(_selectedBuildingPrefabIndex == 1)
         {
@@ -283,7 +286,8 @@ public class GameManager : MonoBehaviour
                 else
                     R.eff = 1.0f;
                 efficiencycount = 0;
-            
+            R.Money -= 100;
+
         }
         else if (_selectedBuildingPrefabIndex == 2)
         {
@@ -305,6 +309,7 @@ public class GameManager : MonoBehaviour
                     tileObject = Instantiate(sawmills, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
                     t = tileObject.GetComponent<Tile>();
                 }
+                R.Money -= 100;
             }
         }
         else if (_selectedBuildingPrefabIndex == 3)
@@ -313,25 +318,28 @@ public class GameManager : MonoBehaviour
             {
                 tileObject = Instantiate(sheep, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
                 t = tileObject.GetComponent<Tile>();
-            }
-            for (int i = 0; i < m.Count; i++)
-            {
-                if (m[i].name == "ForestTilefinal(Clone)")
+
+                for (int i = 0; i < m.Count; i++)
                 {
-                    efficiencycount++;
+                    if (m[i].name == "ForestTilefinal(Clone)")
+                    {
+                        efficiencycount++;
+                    }
                 }
+                if (efficiencycount < 1)
+                    R.eff = 0;
+                else if (efficiencycount < 2)
+                    R.eff = 0.25f;
+                else if (efficiencycount < 3)
+                    R.eff = 0.5f;
+                else if (efficiencycount < 4)
+                    R.eff = 0.75f;
+                else
+                    R.eff = 1.0f;
+                efficiencycount = 0;
+                R.Planks -= 2;
+                R.Money -= 100;
             }
-            if (efficiencycount < 1)
-                R.eff = 0;
-            else if (efficiencycount < 2)
-                R.eff = 0.25f;
-            else if (efficiencycount < 3)
-                R.eff = 0.5f;
-            else if (efficiencycount < 4)
-                R.eff = 0.75f;
-            else
-                R.eff = 1.0f;
-            efficiencycount = 0;
         }
         else if (_selectedBuildingPrefabIndex == 4)
         {
@@ -353,6 +361,8 @@ public class GameManager : MonoBehaviour
                     tileObject = Instantiate(cloths, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
                     t = tileObject.GetComponent<Tile>();
                 }
+                R.Planks -= 2;
+                R.Money -= 400;
             }
         }
         else if (_selectedBuildingPrefabIndex == 5)
@@ -380,7 +390,9 @@ public class GameManager : MonoBehaviour
             else
                 R.eff = 1.0f;
             efficiencycount = 0;
-        
+            R.Planks -= 2;
+            R.Money -= 100;
+
         }
         else if (_selectedBuildingPrefabIndex == 6)
         {
@@ -402,6 +414,8 @@ public class GameManager : MonoBehaviour
                     tileObject = Instantiate(schnaps, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
                     t = tileObject.GetComponent<Tile>();
                 }
+                R.Planks -= 2;
+                R.Money -= 100;
             }
         }
     }
