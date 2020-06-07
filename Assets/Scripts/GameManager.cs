@@ -214,15 +214,13 @@ public class GameManager : MonoBehaviour
     //Checks if the currently selected building type can be placed on the given tile and then instantiates an instance of the prefab
     private void PlaceBuildingOnTile(Tile t)
     {
-        Debug.Log(t.name);
         Transform tileObject;
-        Debug.Log(t.name);
         //if there is building prefab for the number input
         if (_selectedBuildingPrefabIndex == 0)
         {
              if(R.Planks >= 2 && R.Money >= 100 && t.name == "SandTilefinal(Clone)")
             {
-                tileObject = Instantiate(fishery, position_absolute(t.position.x, t.position.z, t.position.y), Quaternion.Euler(0, 0, 0));
+                tileObject = Instantiate(fishery, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
                 t = tileObject.GetComponent<Tile>();
             }
         }

@@ -66,7 +66,7 @@ public class Tile : MonoBehaviour{
     {
         return base.ToString();
     }
-    public string test(){
+    public string toggleVariant(){
         if (baseVersion != null){
             gameObject.SetActive(!gameObject.activeSelf);
             Transform tileObject = Instantiate(baseVersion.transform, transform.position, Quaternion.Euler(0, this.rotation, 0));
