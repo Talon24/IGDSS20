@@ -105,7 +105,11 @@ public class GameManager : MonoBehaviour
     #endregion
     public Transform fishery;
     public Transform lumberjack;
-
+    public Transform sawmill;
+    public Transform sheep;
+    public Transform cloth;
+    public Transform potato;
+    public Transform schnaps;
 
     #region Resources
     private Dictionary<ResourceTypes, float> _resourcesInWarehouse = new Dictionary<ResourceTypes, float>(); //Holds a number of stored resources for every ResourceType
@@ -210,24 +214,77 @@ public class GameManager : MonoBehaviour
     //Checks if the currently selected building type can be placed on the given tile and then instantiates an instance of the prefab
     private void PlaceBuildingOnTile(Tile t)
     {
+        Debug.Log(t.name);
         Transform tileObject;
-        tileObject = Instantiate(sand_tile, position_absolute(t.position.x, t.position.z, t.position.y), Quaternion.Euler(0, 0, 0));
-        t = tileObject.GetComponent<Tile>();
-        //Debug.Log(t);
+        Debug.Log(t.name);
         //if there is building prefab for the number input
-        /*if (_selectedBuildingPrefabIndex == 0)
+        if (_selectedBuildingPrefabIndex == 0)
         {
-             if(R.Planks >= 2 && R.Money >= 100)
+             if(R.Planks >= 2 && R.Money >= 100 && t.name == "SandTilefinal(Clone)")
             {
                 tileObject = Instantiate(fishery, position_absolute(t.position.x, t.position.z, t.position.y), Quaternion.Euler(0, 0, 0));
                 t = tileObject.GetComponent<Tile>();
             }
-
-            tileObject = Instantiate(lumberjack, position_absolute(t.position.x, t.position.z, t.position.y), Quaternion.Euler(0, 0, 0));
-            t = tileObject.GetComponent<Tile>();
-
-        }*/
+        }
+        else if(_selectedBuildingPrefabIndex == 1)
+        {
+            if (R.Money >= 100 && t.name == "ForestTilefinal(Clone)")
+            {
+                tileObject = Instantiate(lumberjack, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                t = tileObject.GetComponent<Tile>();
+            }
+        }
+        else if (_selectedBuildingPrefabIndex == 2)
+        {
+            if (R.Money >= 100)
+            {
+                if (t.name == "GrassTilefinal(Clone)" || t.name == "ForestTilefinal(Clone)" || t.name == "StoneTilefinal(Clone)")
+                {
+                    tileObject = Instantiate(sawmill, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                    t = tileObject.GetComponent<Tile>();
+                }
+            }
+        }
+        else if (_selectedBuildingPrefabIndex == 3)
+        {
+            if (R.Money >= 100 && R.Planks >= 2 && t.name == "GrassTilefinal(Clone)")
+            {
+                tileObject = Instantiate(sheep, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                t = tileObject.GetComponent<Tile>();
+            }
+        }
+        else if (_selectedBuildingPrefabIndex == 4)
+        {
+            if (R.Money >= 400 && R.Planks >= 2)
+            {
+                if (t.name == "GrassTilefinal(Clone)" || t.name == "ForestTilefinal(Clone)" || t.name == "StoneTilefinal(Clone)")
+                {
+                    tileObject = Instantiate(cloth, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                    t = tileObject.GetComponent<Tile>();
+                }
+            }
+        }
+        else if (_selectedBuildingPrefabIndex == 5)
+        {
+            if (R.Money >= 100 && R.Planks >= 2 && t.name == "GrassTilefinal(Clone)")
+            {
+                tileObject = Instantiate(potato, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                t = tileObject.GetComponent<Tile>();
+            }
+        }
+        else if (_selectedBuildingPrefabIndex == 6)
+        {
+            if (R.Money >= 100 && R.Planks >= 2)
+            {
+                if (t.name == "GrassTilefinal(Clone)" || t.name == "ForestTilefinal(Clone)" || t.name == "StoneTilefinal(Clone)")
+                {
+                    tileObject = Instantiate(schnaps, position_absolute(t.position.x, t.position.y, t.position.z), Quaternion.Euler(0, 0, 0));
+                    t = tileObject.GetComponent<Tile>();
+                }
+            }
+        }
     }
+
 
     //Returns a list of all neighbors of a given tile
     public List<Tile> FindNeighborsOfTile(Tile t)
