@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        debugEnable.gameObject.SetActive(true);
+        DebugDisable.gameObject.SetActive(false);
         // float edge_length = 17.323232f;
         // float long_diameter = 10f;
         this.map = new Tile[heightmap.height, heightmap.width];
@@ -110,6 +112,8 @@ public class GameManager : MonoBehaviour
     public Transform cloth;
     public Transform potato;
     public Transform schnaps;
+    public Transform debugEnable;
+    public Transform DebugDisable;
 
     #region Resources
     private Dictionary<ResourceTypes, float> _resourcesInWarehouse = new Dictionary<ResourceTypes, float>(); //Holds a number of stored resources for every ResourceType
