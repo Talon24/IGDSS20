@@ -75,7 +75,7 @@ public class Tile : MonoBehaviour{
 
     public void placeBuilding(GameObject building){
         if (_building == null) {
-            GameObject newBuild = Instantiate(building, position_absolute(), new Quaternion());
+            GameObject newBuild = Instantiate(building, position_absolute(), Quaternion.Euler(0, this.rotation, 0));
             _building = newBuild.GetComponent<Building>();
 
             if (fitsRequirement(_building.build_requirement)){
