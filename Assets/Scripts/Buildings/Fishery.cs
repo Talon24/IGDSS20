@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Fishery : Building
 {
-
+    public void Start(){
+        Name = "Fishery";
+    }
     // public Fishery() {
     //     initialCost = 100;
     //     cost.Add(new Plank(), 2); // Das hier geht in dem unity controller nicht

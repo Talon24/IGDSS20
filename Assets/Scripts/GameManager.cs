@@ -96,12 +96,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        HandleKeyboardInput();
     }
 
 
     #region Buildings
     public GameObject[] _buildingPrefabs; //References to the building prefabs
+    public string[] _buildingPrefabsNames;
     public int _selectedBuildingPrefabIndex = 0; //The current index used for choosing a prefab to spawn from the _buildingPrefabs list
     #endregion
 
@@ -187,6 +188,14 @@ public class GameManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             _selectedBuildingPrefabIndex = 9;
+        }
+        else {
+            return;
+        }
+        if (_selectedBuildingPrefabIndex < _buildingPrefabs.Length)
+        {
+            // Building building = _buildingPrefabs[_selectedBuildingPrefabIndex].GetComponent<Building>();
+            Debug.Log(string.Format("Currently selected Building is {0}", _buildingPrefabsNames[_selectedBuildingPrefabIndex]));
         }
     }
 

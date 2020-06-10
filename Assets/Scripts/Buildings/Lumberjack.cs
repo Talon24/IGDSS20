@@ -5,8 +5,9 @@ using UnityEngine;
 public class Lumberjack : Building
 {
 
-    public Lumberjack()
+    public void Start()
     {
+        Name = "Lumberjack";
         initialCost = 100;
         upkeep = 10;
         inputRessource = null;

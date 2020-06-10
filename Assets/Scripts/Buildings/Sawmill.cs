@@ -5,8 +5,9 @@ using UnityEngine;
 public class Sawmill : Building
 {
 
-    public Sawmill()
+    public void Start()
     {
+        Name = "Sawmill";
         initialCost = 100;
         upkeep = 10;
         inputRessource = new Wood();

@@ -5,7 +5,8 @@ using UnityEngine;
 public class PotatoFarm : Building
 {
 
-    public PotatoFarm() {
+    public void Start() {
+        Name = "PotatoFarm";
         initialCost = 100;
         cost.Add(new Plank(), 2);
         upkeep = 20;

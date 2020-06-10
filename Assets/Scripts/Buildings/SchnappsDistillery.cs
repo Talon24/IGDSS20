@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SchnappsDistillery : Building{
 
-    public SchnappsDistillery()
+    public void Start()
     {
+        Name = "Distillery";
         initialCost = 100;
         cost.Add(new Plank(), 2);
         upkeep = 40;

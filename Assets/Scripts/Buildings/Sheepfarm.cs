@@ -5,8 +5,9 @@ using UnityEngine;
 public class Sheepfarm : Building
 {
 
-    public Sheepfarm()
+    public void Start()
     {
+        Name = "Sheep farm";
         initialCost = 100;
         cost.Add(new Plank(), 2);
         upkeep = 20;

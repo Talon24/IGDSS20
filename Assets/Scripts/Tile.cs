@@ -21,16 +21,11 @@ public class Tile : MonoBehaviour{
     #endregion
     public int TileType;
 
-    public Tile(Transform myTransform, float horizontal_pos, float vertical_pos, float height, float rotation){
-        this.myTransform = myTransform;
-        this.position = new Vector3(horizontal_pos, height, vertical_pos);
-        this.rotation = rotation;
-    }
-    public Tile(Transform myTransform, float horizontal_pos, float vertical_pos, float height)
-    {
-        this.myTransform = myTransform;
-        this.position = new Vector3(horizontal_pos, height, vertical_pos);
-        this.rotation = 0f;
+    public void Start(){
+        if (TileType == (int)TileTypes.Mountain)
+        {
+            // Debug.Log(string.Format("Is a mountain tile {0}", position));
+        }
     }
 
     public Vector3 position_absolute() {
