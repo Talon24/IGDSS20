@@ -250,6 +250,12 @@ MonoBehaviour:
   build_requirement:
   - {fileID: 6146388628921357517, guid: f549c24ecaa45cb498514352a3675d1c, type: 3}
   Name: 
+  tile: {fileID: 0}
+  minSurroundingTiles: 1
+  maxSurroundingTiles: 4
+  SurroundingTile: {fileID: 6146388628921357517, guid: f549c24ecaa45cb498514352a3675d1c,
+    type: 3}
+  efficiency: 0
 --- !u!1 &1040381325622728262
 GameObject:
   m_ObjectHideFlags: 0

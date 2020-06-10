@@ -51,7 +51,7 @@ public class RessourceManager : MonoBehaviour
     public void buyBuilding(Building building)
     {
         Dictionary<int, int> cost = building.cost;
-        prettyprint(cost);
+        // prettyprint(cost);
         foreach (KeyValuePair<int, int> kv in cost)
         {
             Stockpile[kv.Key].amount -= kv.Value;
@@ -59,7 +59,7 @@ public class RessourceManager : MonoBehaviour
     }
     public bool canAfford(Building building){
         Dictionary<int, int> cost = building.cost;
-        prettyprint(cost);
+        // prettyprint(cost);
         foreach (KeyValuePair<int, int> kv in cost)
         {
             if (Stockpile[kv.Key].amount < kv.Value){

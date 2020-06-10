@@ -78,7 +78,6 @@ public class Tile : MonoBehaviour{
             GameObject newBuild = Instantiate(building, position_absolute(), Quaternion.Euler(0, this.rotation, 0));
             _building = newBuild.GetComponent<Building>();
 
-            Debug.Log(string.Format("Upkeep of building is {0}", _building.upkeep));
             if (fitsRequirement(_building.build_requirement) && ressourceManager.canAfford(_building))
             {
                 Transform tileObject = Instantiate(baseVersion.transform, transform.position, Quaternion.Euler(0, this.rotation, 0));
@@ -88,6 +87,7 @@ public class Tile : MonoBehaviour{
                 tile._building = _building;
                 _building.tile = this;
                 ressourceManager.buyBuilding(_building);
+                _building.setEfficiency();
             } 
             else 
             { // Revert changes
