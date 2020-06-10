@@ -82,12 +82,14 @@ public class Tile : MonoBehaviour{
             {
                 Transform tileObject = Instantiate(baseVersion.transform, transform.position, Quaternion.Euler(0, this.rotation, 0));
                 Tile tile = tileObject.GetComponent<Tile>();
+                tileObject.transform.parent = transform.parent;
                 gameObject.SetActive(!gameObject.activeSelf);
                 tile.backReference = this;
                 tile._building = _building;
                 _building.tile = this;
                 ressourceManager.buyBuilding(_building);
                 _building.setEfficiency();
+                _building.ressourceManager = ressourceManager;
             } 
             else 
             { // Revert changes

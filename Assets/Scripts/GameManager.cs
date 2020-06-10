@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Transform stone_tile;
     public Transform mountain_tile;
     public Transform DevelopementDisable;
+    public Transform MapParent;
     public RessourceManager ressourceManager;
 
     private Tile[,] map;
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
                 // map[x, y].place();
                 Transform tileObject = Instantiate(tile, position_absolute(x, height, y), Quaternion.Euler(0, rotation, 0));
                 // Debug.Log(tileObject.GetComponent<Tile>());
+                tileObject.transform.parent = MapParent;
                 Tile tile_ = tileObject.GetComponent<Tile>();
                 tile_.position = new Vector3(x, height, y);
                 tile_.rotation = rotation;

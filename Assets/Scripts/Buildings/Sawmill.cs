@@ -8,12 +8,9 @@ public class Sawmill : Building
     public Sawmill()
     {
         Name = "Sawmill";
-        cost.Add((int)Ressources.Money, 100);
-        upkeep = 10;
-        inputRessource = new Wood();
-        outputRessource = new Plank();
-        outputAmount = 2;
-        ProcessingTime = 15;
+        cost.Add((int)Ressources.Money, initialCost);
+        inputRessource = (int)Ressources.Wood;
+        outputRessource = (int)Ressources.Planks;
 
     }
 }

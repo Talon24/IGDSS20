@@ -550,14 +550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2661ab9fca4d9c945870e00dc4b824e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 1768092941}
-  Money: 0
-  Planks: 0
-  Cloth: 0
-  Schnapps: 0
-  Wood: 0
-  Wool: 0
-  Potato: 0
+  Stockpile: []
 --- !u!1 &431373865
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,6 +586,36 @@ Transform:
   - {fileID: 1076749449}
   m_Father: {fileID: 932250360}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &441223712
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 441223713}
+  m_Layer: 0
+  m_Name: Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &441223713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441223712}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &506317605
 GameObject:
@@ -1840,6 +1863,8 @@ MonoBehaviour:
   stone_tile: {fileID: 4219415745835712564}
   mountain_tile: {fileID: 1450067464}
   DevelopementDisable: {fileID: 932250360}
+  MapParent: {fileID: 441223713}
+  ressourceManager: {fileID: 373529232}
   _buildingPrefabs:
   - {fileID: 1731654303819961898, guid: 3406c19d2c3b2c04da324f23062fc933, type: 3}
   - {fileID: 1907623195153597716, guid: e2c2be93461999840a0d03c47d1b80c2, type: 3}

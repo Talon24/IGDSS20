@@ -65,12 +65,20 @@ MonoBehaviour:
   initialCost: 0
   upkeep: 0
   outputAmount: 1
-  ProcessingTime: 0
+  ProcessingTime: 30
   build_requirement:
   - {fileID: 6146388628921357517, guid: f549c24ecaa45cb498514352a3675d1c, type: 3}
   - {fileID: 3904172423750652247, guid: beaf3e6eeb231784387cb99da90a7c7d, type: 3}
   - {fileID: 6778234312165509336, guid: 476946919e1d5104fb4c93f1dc2db5e9, type: 3}
   Name: 
+  tile: {fileID: 0}
+  minSurroundingTiles: 0
+  maxSurroundingTiles: 0
+  SurroundingTile: {fileID: 0}
+  efficiency: 0
+  inProgress: 0
+  progress: 0
+  ressourceManager: {fileID: 0}
 --- !u!1001 &3494447806532314261
 PrefabInstance:
   m_ObjectHideFlags: 0

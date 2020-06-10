@@ -84,4 +84,24 @@ public class RessourceManager : MonoBehaviour
         }
         Debug.Log(string.Format("Finished writing dict"));
     }
+
+    public bool isAvailable(int key, int amount){
+        return (Stockpile[key].amount >= amount);
+    }
+    public bool Retrieve(int key, int amount)
+    {
+        bool available = isAvailable(key, amount);
+        if (available)
+        {
+            Stockpile[key].amount -= amount;
+            if (Stockpile[key].amount < 0) {
+                throw new Exception("Negative stockpile!!! Race condition probably!");
+            }
+        }
+        return available;
+    }
+
+    public void put(int key, int amount){
+        Stockpile[key].amount += amount;
+    }
 }

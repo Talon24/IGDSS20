@@ -1,1 +1,1 @@
-﻿public enum Ressources {Money, Planks, Cloth, Schnapps, Wood, Wool, Potato};
+﻿public enum Ressources {Money, Planks, Cloth, Schnapps, Wood, Wool, Potato, Fish};

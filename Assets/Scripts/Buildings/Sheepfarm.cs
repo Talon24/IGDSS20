@@ -8,13 +8,9 @@ public class Sheepfarm : Building
     public Sheepfarm()
     {
         Name = "Sheep farm";
-        initialCost = 100;
-        cost.Add((int)Ressources.Money, 100);
-        upkeep = 20;
+        cost.Add((int)Ressources.Money, initialCost);
         inputRessource = null;
-        outputRessource = new Wool();
-        outputAmount = 1;
-        ProcessingTime = 30;
+        outputRessource = (int)Ressources.Wool;
 
     }
 }

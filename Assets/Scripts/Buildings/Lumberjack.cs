@@ -8,12 +8,9 @@ public class Lumberjack : Building
     public Lumberjack()
     {
         Name = "Lumberjack";
-        cost.Add((int)Ressources.Money, 100);
-        upkeep = 10;
+        cost.Add((int)Ressources.Money, initialCost);
         inputRessource = null;
-        outputRessource = new Wood();
-        outputAmount = 1;
-        ProcessingTime = 15;
+        outputRessource = (int)Ressources.Wood;
 
     }
 }

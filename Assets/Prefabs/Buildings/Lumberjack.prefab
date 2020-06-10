@@ -77,7 +77,7 @@ MonoBehaviour:
   initialCost: 0
   upkeep: 0
   outputAmount: 1
-  ProcessingTime: 0
+  ProcessingTime: 15
   build_requirement:
   - {fileID: 3904172423750652247, guid: beaf3e6eeb231784387cb99da90a7c7d, type: 3}
   Name: Lumberjack
@@ -87,6 +87,9 @@ MonoBehaviour:
   SurroundingTile: {fileID: 3904172423750652247, guid: beaf3e6eeb231784387cb99da90a7c7d,
     type: 3}
   efficiency: 0
+  inProgress: 0
+  progress: 0
+  ressourceManager: {fileID: 0}
 --- !u!1001 &1308281848552961018
 PrefabInstance:
   m_ObjectHideFlags: 0
