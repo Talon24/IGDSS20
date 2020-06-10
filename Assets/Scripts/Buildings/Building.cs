@@ -36,7 +36,7 @@ public abstract class Building : MonoBehaviour
             }
         }
         efficiency = Mathf.Clamp((float) (found - (minSurroundingTiles - 1)) / (maxSurroundingTiles - (minSurroundingTiles - 1)), 0f, 1f);
-        Debug.Log(string.Format("Efficiency of building is {0} with {1} found tiles", efficiency, found));
+        // Debug.Log(string.Format("Efficiency of building is {0} with {1} found tiles", efficiency, found));
     }
 
     public void Update() {
@@ -46,13 +46,14 @@ public abstract class Building : MonoBehaviour
         else
         {
             if (efficiency == 0) {return;}
-            progress += (Time.deltaTime / ProcessingTime * (1/efficiency));
+            progress += (Time.deltaTime / ProcessingTime * efficiency);
         }
         if (progress >= 1f){
             ressourceManager.put((int)outputRessource, outputAmount);
             progress = 0f;
             inProgress = false;
         }
+        ressourceManager.buyAllowNegative((Time.deltaTime / ressourceManager.upkeepInterval) * upkeep);
     }
 
     public void startWorking(){

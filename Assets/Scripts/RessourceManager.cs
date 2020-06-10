@@ -19,11 +19,13 @@ public class RessourceManager : MonoBehaviour
 
     // public int[] Stockpile;
 
+    public int upkeepInterval = 60;
+
     [Serializable]
     public struct Item
     {
         public string name;
-        public int amount;
+        public float amount;
     }
     public Item[] Stockpile;
 
@@ -103,5 +105,9 @@ public class RessourceManager : MonoBehaviour
 
     public void put(int key, int amount){
         Stockpile[key].amount += amount;
+    }
+    
+    public void buyAllowNegative(float amount){
+        Stockpile[(int)Ressources.Money].amount -= amount;
     }
 }
