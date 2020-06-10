@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Transform forest_tile;
     public Transform stone_tile;
     public Transform mountain_tile;
+    public Transform DevelopementDisable;
 
     private Tile[,] map;
     private float long_diameter = 10f;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        Destroy(DevelopementDisable.gameObject);
         // float edge_length = 17.323232f;
         // float long_diameter = 10f;
         this.map = new Tile[heightmap.height, heightmap.width];
