@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour
+public abstract class Building : MonoBehaviour
 {
     public int initialCost;
-    public Dictionary<Ressource, int> cost = new Dictionary<Ressource, int>();
+    public Dictionary<int, int> cost = new Dictionary<int, int>();
     public int upkeep;
     public Ressource inputRessource;
     public Ressource outputRessource;
@@ -13,4 +13,5 @@ public class Building : MonoBehaviour
     public int ProcessingTime;
     public Transform[] build_requirement;
     public string Name;
+    public Tile tile;
 }

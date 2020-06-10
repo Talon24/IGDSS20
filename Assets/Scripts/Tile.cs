@@ -73,19 +73,24 @@ public class Tile : MonoBehaviour{
         return false;
     }
 
-    public void placeBuilding(GameObject building){
+    public void placeBuilding(GameObject building, RessourceManager ressourceManager){
         if (_building == null) {
             GameObject newBuild = Instantiate(building, position_absolute(), Quaternion.Euler(0, this.rotation, 0));
             _building = newBuild.GetComponent<Building>();
 
-            if (fitsRequirement(_building.build_requirement)){
-                gameObject.SetActive(!gameObject.activeSelf);
-
+            Debug.Log(string.Format("Upkeep of building is {0}", _building.upkeep));
+            if (fitsRequirement(_building.build_requirement) && ressourceManager.canAfford(_building))
+            {
                 Transform tileObject = Instantiate(baseVersion.transform, transform.position, Quaternion.Euler(0, this.rotation, 0));
                 Tile tile = tileObject.GetComponent<Tile>();
+                gameObject.SetActive(!gameObject.activeSelf);
                 tile.backReference = this;
                 tile._building = _building;
-            } else {
+                _building.tile = this;
+                ressourceManager.buyBuilding(_building);
+            } 
+            else 
+            { // Revert changes
                 Destroy(_building.gameObject);
                 _building = null;
             }

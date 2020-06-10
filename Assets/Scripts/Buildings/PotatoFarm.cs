@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class PotatoFarm : Building
 {
-
-    public void Start() {
+    public PotatoFarm()
+    {
         Name = "PotatoFarm";
-        initialCost = 100;
-        cost.Add(new Plank(), 2);
-        upkeep = 20;
-        inputRessource = null;
+        upkeep = 10;
+        cost.Add((int)Ressources.Money, 100);
+        cost.Add((int)Ressources.Planks, 2);
         outputRessource = new Potato();
         outputAmount = 1;
         ProcessingTime = 30;
-        build_requirement = null;
 
     }
 }

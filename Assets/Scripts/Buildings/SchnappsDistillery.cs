@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class SchnappsDistillery : Building{
 
-    public void Start()
+    public SchnappsDistillery()
     {
         Name = "Distillery";
         initialCost = 100;
-        cost.Add(new Plank(), 2);
+        cost.Add((int)Ressources.Money, 100);
         upkeep = 40;
         inputRessource = new Potato();
         outputRessource = new Schnapps();
         outputAmount = 1;
         ProcessingTime = 30;
-        build_requirement = null;
 
     }
 }

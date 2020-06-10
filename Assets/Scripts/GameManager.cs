@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Transform stone_tile;
     public Transform mountain_tile;
     public Transform DevelopementDisable;
+    public RessourceManager ressourceManager;
 
     private Tile[,] map;
     private float long_diameter = 10f;
@@ -233,8 +234,7 @@ public class GameManager : MonoBehaviour
         if (_selectedBuildingPrefabIndex < _buildingPrefabs.Length)
         {
             GameObject building = _buildingPrefabs[_selectedBuildingPrefabIndex];
-            t.placeBuilding(building);
-
+            t.placeBuilding(building, ressourceManager);
         }
     }
 

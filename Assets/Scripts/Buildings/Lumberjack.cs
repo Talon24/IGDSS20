@@ -5,16 +5,15 @@ using UnityEngine;
 public class Lumberjack : Building
 {
 
-    public void Start()
+    public Lumberjack()
     {
         Name = "Lumberjack";
-        initialCost = 100;
+        cost.Add((int)Ressources.Money, 100);
         upkeep = 10;
         inputRessource = null;
         outputRessource = new Wood();
         outputAmount = 1;
         ProcessingTime = 15;
-        build_requirement = null;
 
     }
 }
