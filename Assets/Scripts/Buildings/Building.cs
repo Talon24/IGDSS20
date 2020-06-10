@@ -11,6 +11,6 @@ public class Building : MonoBehaviour
     public Ressource outputRessource;
     public int outputAmount = 1;
     public int ProcessingTime;
-    public Tile[] build_requirement;
+    public Transform[] build_requirement;
     public string Name;
 }

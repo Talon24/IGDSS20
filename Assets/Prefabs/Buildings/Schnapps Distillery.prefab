@@ -526,6 +526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8108791360751885427}
+  - component: {fileID: 3290607878278027191}
   m_Layer: 0
   m_Name: Schnapps Distillery
   m_TagString: Untagged
@@ -556,6 +557,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3290607878278027191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8108791360751885426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fa13f9a8e913c4dbac56acd0524570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialCost: 100
+  upkeep: 40
+  outputAmount: 1
+  ProcessingTime: 30
+  build_requirement:
+  - {fileID: 6146388628921357517, guid: f549c24ecaa45cb498514352a3675d1c, type: 3}
+  - {fileID: 3904172423750652247, guid: beaf3e6eeb231784387cb99da90a7c7d, type: 3}
+  - {fileID: 6778234312165509336, guid: 476946919e1d5104fb4c93f1dc2db5e9, type: 3}
+  Name: 
 --- !u!1 &8108791360913724509
 GameObject:
   m_ObjectHideFlags: 0

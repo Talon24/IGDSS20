@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: type
       value: 
       objectReference: {fileID: 3904172423750652247}
+    - target: {fileID: -2204199597062558289, guid: 4cdd9622e6eb2a6498e3d47c96b87198,
+        type: 3}
+      propertyPath: TileType
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2810648041492908100, guid: 4cdd9622e6eb2a6498e3d47c96b87198,
         type: 3}
       propertyPath: m_Materials.Array.data[1]

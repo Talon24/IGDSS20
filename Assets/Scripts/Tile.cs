@@ -42,12 +42,6 @@ public class Tile : MonoBehaviour{
         return abs_position;
     }
 
-    public void place() {
-        Object.Instantiate(myTransform, position_absolute(), Quaternion.Euler(0, rotation, 0));
-        // TODO: save instanciated obect to keep reference to it for interactions
-        
-    }
-
     public override bool Equals(object obj)
     {
         return base.Equals(obj);
@@ -66,20 +60,41 @@ public class Tile : MonoBehaviour{
     {
         return "Test";
     }
-    public string placeBuilding(GameObject building){
-        if (baseVersion != null && _building == null){
-            gameObject.SetActive(!gameObject.activeSelf);
-            Transform tileObject = Instantiate(baseVersion.transform, transform.position, Quaternion.Euler(0, this.rotation, 0));
-            // Transform new_object = Object.Instantiate(baseVersion, transform.position, new Quaternion());
-            Tile tile = tileObject.GetComponent<Tile>();
-            Instantiate(building, position_absolute(), new Quaternion());
-            tile.backReference = this;
+
+    public bool fitsRequirement(Transform[] required)
+    {
+        foreach (Transform trafo in required)
+        {
+            if (trafo.GetComponent<Tile>().TileType == TileType)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void placeBuilding(GameObject building){
+        if (_building == null) {
+            GameObject newBuild = Instantiate(building, position_absolute(), new Quaternion());
+            _building = newBuild.GetComponent<Building>();
+
+            if (fitsRequirement(_building.build_requirement)){
+                gameObject.SetActive(!gameObject.activeSelf);
+
+                Transform tileObject = Instantiate(baseVersion.transform, transform.position, Quaternion.Euler(0, this.rotation, 0));
+                Tile tile = tileObject.GetComponent<Tile>();
+                tile.backReference = this;
+                tile._building = _building;
+            } else {
+                Destroy(_building.gameObject);
+                _building = null;
+            }
         }
         else {
             backReference.gameObject.SetActive(!backReference.gameObject.activeSelf);
             Destroy(this.gameObject);
+            Destroy(backReference._building.gameObject);
 
         }
-        return "Hallo";
     }
 }

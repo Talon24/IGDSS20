@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1956842454068065087}
+  - component: {fileID: 45370309201023115}
   m_Layer: 0
   m_Name: Potato Farm
   m_TagString: Untagged
@@ -79,6 +80,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &45370309201023115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956842454068065086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb8013ef4a4e374fb3f03954403286c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialCost: 100
+  upkeep: 20
+  outputAmount: 1
+  ProcessingTime: 30
+  build_requirement:
+  - {fileID: 6146388628921357517, guid: f549c24ecaa45cb498514352a3675d1c, type: 3}
+  Name: 
 --- !u!1001 &649073074104300828
 PrefabInstance:
   m_ObjectHideFlags: 0

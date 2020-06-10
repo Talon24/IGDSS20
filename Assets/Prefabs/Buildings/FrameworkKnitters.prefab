@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3494447807593600603}
+  - component: {fileID: 8736194128995952843}
   m_Layer: 0
   m_Name: FrameworkKnitters
   m_TagString: Untagged
@@ -49,6 +50,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8736194128995952843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3494447807593600602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be26c1b61be6a634f805c57a5ce45a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialCost: 0
+  upkeep: 0
+  outputAmount: 1
+  ProcessingTime: 0
+  build_requirement:
+  - {fileID: 6146388628921357517, guid: f549c24ecaa45cb498514352a3675d1c, type: 3}
+  - {fileID: 3904172423750652247, guid: beaf3e6eeb231784387cb99da90a7c7d, type: 3}
+  - {fileID: 6778234312165509336, guid: 476946919e1d5104fb4c93f1dc2db5e9, type: 3}
+  Name: 
 --- !u!1001 &3494447806532314261
 PrefabInstance:
   m_ObjectHideFlags: 0
