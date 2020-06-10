@@ -172,7 +172,8 @@ public class MouseManager : MonoBehaviour
                     if (istile){
                         Tile tile = hit.collider.GetComponent<Tile>();
                         Debug.Log(string.Format("Clicked tile is {0}", tile.name));
-                        tile.test();
+                        // tile.test();
+                        manager.PlaceBuildingOnTile(tile);
                         // Debug.Log(string.Join(", ", tile.neighbors));
                         // foreach (Tile tile_ in tile.neighbors)
                         // {

@@ -227,12 +227,13 @@ public class GameManager : MonoBehaviour
     }
 
     //Checks if the currently selected building type can be placed on the given tile and then instantiates an instance of the prefab
-    private void PlaceBuildingOnTile(Tile t)
+    public void PlaceBuildingOnTile(Tile t)
     {
         //if there is building prefab for the number input
         if (_selectedBuildingPrefabIndex < _buildingPrefabs.Length)
         {
-            //TODO: check if building can be placed and then istantiate it
+            GameObject building = _buildingPrefabs[_selectedBuildingPrefabIndex];
+            t.placeBuilding(building);
 
         }
     }
