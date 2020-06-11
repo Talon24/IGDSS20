@@ -1,71 +1,31 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public abstract class Building : MonoBehaviour
 {
-    public int initialCost;
-    public Dictionary<int, int> cost = new Dictionary<int, int>();
-    public int upkeep;
-    public Nullable<int> inputRessource;
-    public Nullable<int> outputRessource;
-    public int outputAmount = 1;
-    public int ProcessingTime;
-    public Transform[] build_requirement;
-    public string Name;
-    public Tile tile;
-    public int minSurroundingTiles;
-    public int maxSurroundingTiles;
-    public Transform SurroundingTile;
-    public float efficiency;
-    public bool inProgress;
-    public float progress;
-    public RessourceManager ressourceManager;
+    #region Manager References
+    JobManager _jobManager; //Reference to the JobManager
+    #endregion
+    
+    #region Workers
+    public List<Worker> _workers; //List of all workers associated with this building, either for work or living
+    #endregion
 
-    public void setEfficiency(){
-        if (SurroundingTile == null){
-            efficiency = 1;
-            return;
-        }
-        int found = 0;
-        foreach (Tile surroundTile in tile.neighbors)
-        {
-            if (SurroundingTile.GetComponent<Tile>().TileType == surroundTile.TileType){
-                found += 1;
-            }
-        }
-        efficiency = Mathf.Clamp((float) (found - (minSurroundingTiles - 1)) / (maxSurroundingTiles - (minSurroundingTiles - 1)), 0f, 1f);
-        // Debug.Log(string.Format("Efficiency of building is {0} with {1} found tiles", efficiency, found));
+    #region Jobs
+    public List<Job> _jobs; // List of all available Jobs. Is populated in Start()
+    #endregion
+    
+
+    #region Methods   
+    public void WorkerAssignedToBuilding(Worker w)
+    {
+        _workers.Add(w);
     }
 
-    public void Update() {
-        if (!inProgress){
-            startWorking();
-        }
-        else
-        {
-            if (efficiency == 0) {return;}
-            progress += (Time.deltaTime / ProcessingTime * efficiency);
-        }
-        if (progress >= 1f){
-            ressourceManager.put((int)outputRessource, outputAmount);
-            progress = 0f;
-            inProgress = false;
-        }
-        ressourceManager.buyAllowNegative((Time.deltaTime / ressourceManager.upkeepInterval) * upkeep);
+    public void WorkerRemovedFromBuilding(Worker w)
+    {
+        _workers.Remove(w);
     }
-
-    public void startWorking(){
-        if (inputRessource == null || ressourceManager.isAvailable((int)inputRessource, 1))
-        {
-            if (inputRessource != null) {ressourceManager.Retrieve((int)inputRessource, 1); }
-            inProgress = true;
-            progress = 0f;
-        }
-        else
-        {
-            return;
-        }
-    }
+    #endregion
 }

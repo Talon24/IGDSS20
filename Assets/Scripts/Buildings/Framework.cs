@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Framework : Building{
+public class Framework : BuildingProduction{
     public Framework()
     {
         cost.Add((int)Ressources.Money, initialCost);

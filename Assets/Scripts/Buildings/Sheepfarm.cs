@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sheepfarm : Building
+public class Sheepfarm : BuildingProduction
 {
 
     public Sheepfarm()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SchnappsDistillery : Building{
+public class SchnappsDistillery : BuildingProduction{
 
     public SchnappsDistillery()
     {

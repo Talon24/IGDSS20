@@ -50,7 +50,7 @@ public class RessourceManager : MonoBehaviour
 
     }
 
-    public void buyBuilding(Building building)
+    public void buyBuilding(BuildingProduction building)
     {
         Dictionary<int, int> cost = building.cost;
         // prettyprint(cost);
@@ -59,7 +59,7 @@ public class RessourceManager : MonoBehaviour
             Stockpile[kv.Key].amount -= kv.Value;
         }
     }
-    public bool canAfford(Building building){
+    public bool canAfford(BuildingProduction building){
         Dictionary<int, int> cost = building.cost;
         // prettyprint(cost);
         foreach (KeyValuePair<int, int> kv in cost)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fishery : Building
+public class Fishery : BuildingProduction
 {
     public Fishery() {
         cost.Add((int)Ressources.Money, initialCost);

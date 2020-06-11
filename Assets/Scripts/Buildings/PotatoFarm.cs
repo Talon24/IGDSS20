@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PotatoFarm : Building
+public class PotatoFarm : BuildingProduction
 {
     public PotatoFarm()
     {

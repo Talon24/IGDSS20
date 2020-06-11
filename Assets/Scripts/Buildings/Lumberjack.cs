@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lumberjack : Building
+public class Lumberjack : BuildingProduction
 {
 
     public Lumberjack()
