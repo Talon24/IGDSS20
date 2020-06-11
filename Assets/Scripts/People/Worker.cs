@@ -15,6 +15,8 @@ public class Worker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _jobManager = FindObjectOfType<JobManager>();
+        _gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
