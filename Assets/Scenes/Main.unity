@@ -1869,6 +1869,7 @@ MonoBehaviour:
   DevelopementDisable: {fileID: 932250360}
   MapParent: {fileID: 441223713}
   ressourceManager: {fileID: 373529232}
+  jobManager: {fileID: 2109123444}
   _buildingPrefabs:
   - {fileID: 1731654303819961898, guid: 3406c19d2c3b2c04da324f23062fc933, type: 3}
   - {fileID: 1907623195153597716, guid: e2c2be93461999840a0d03c47d1b80c2, type: 3}
@@ -1877,6 +1878,7 @@ MonoBehaviour:
   - {fileID: 3494447807593600602, guid: 29d5f491ac678ca49868f4b7cb9d1e6b, type: 3}
   - {fileID: 1956842454068065086, guid: 311d3af8902661242b47a348a72c5ac1, type: 3}
   - {fileID: 8108791360751885426, guid: 00cff449c18a1b04889f6803bf521985, type: 3}
+  - {fileID: 6127368876455709906, guid: 3dc5b107614048840a8731aab695a31f, type: 3}
   _buildingPrefabsNames:
   - Fishery
   - Lumberjack
@@ -1885,6 +1887,7 @@ MonoBehaviour:
   - Framework Knitters
   - Potato Farm
   - Distillery
+  - House
   _selectedBuildingPrefabIndex: 0
   _ResourcesInWarehouse_Fish: 0
   _ResourcesInWarehouse_Wood: 0

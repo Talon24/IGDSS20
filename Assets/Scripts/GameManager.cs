@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public Transform DevelopementDisable;
     public Transform MapParent;
     public RessourceManager ressourceManager;
+    public JobManager jobManager;
 
     private Tile[,] map;
     private float long_diameter = 10f;
@@ -198,7 +199,8 @@ public class GameManager : MonoBehaviour
         if (_selectedBuildingPrefabIndex < _buildingPrefabs.Length)
         {
             // Building building = _buildingPrefabs[_selectedBuildingPrefabIndex].GetComponent<Building>();
-            Debug.Log(string.Format("Currently selected Building is {0}", _buildingPrefabsNames[_selectedBuildingPrefabIndex]));
+            // Debug.Log(string.Format("Currently selected Building is {0}", _buildingPrefabsNames[_selectedBuildingPrefabIndex]));
+            Debug.Log(string.Format("Currently selected Building is {0}", _buildingPrefabs[_selectedBuildingPrefabIndex].name));
         }
     }
 
@@ -236,7 +238,7 @@ public class GameManager : MonoBehaviour
         if (_selectedBuildingPrefabIndex < _buildingPrefabs.Length)
         {
             GameObject building = _buildingPrefabs[_selectedBuildingPrefabIndex];
-            t.placeBuilding(building, ressourceManager);
+            t.placeBuilding(building, ressourceManager, jobManager);
         }
     }
 
