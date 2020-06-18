@@ -90,7 +90,7 @@ public class RessourceManager : MonoBehaviour
     public bool isAvailable(int key, int amount){
         return (Stockpile[key].amount >= amount);
     }
-    public bool Retrieve(int key, int amount)
+    public bool Consume(int key, int amount)
     {
         bool available = isAvailable(key, amount);
         if (available)

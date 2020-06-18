@@ -10,6 +10,7 @@ public abstract class Building : MonoBehaviour
     
     #region Workers
     public List<Worker> _workers; //List of all workers associated with this building, either for work or living
+    public int maxWorkers;
     #endregion
 
     #region Jobs
@@ -28,7 +29,17 @@ public abstract class Building : MonoBehaviour
     #region Methods   
     public void WorkerAssignedToBuilding(Worker w)
     {
-        _workers.Add(w);
+        if (_workers.Count < maxWorkers)
+        {
+            _workers.Add(w);
+            jobManager._unoccupiedWorkers.Add(w);
+        } else {
+            // TODO: Maybe throw exception? or return boolean?
+        }
+    }
+
+    public virtual void Update(){
+        setEfficiency();
     }
 
     public void WorkerRemovedFromBuilding(Worker w)
@@ -42,19 +53,5 @@ public abstract class Building : MonoBehaviour
 
     }
 
-    public void setEfficiency(){
-        if (SurroundingTile == null){
-            efficiency = 1;
-            return;
-        }
-        int found = 0;
-        foreach (Tile surroundTile in tile.neighbors)
-        {
-            if (SurroundingTile.GetComponent<Tile>().TileType == surroundTile.TileType){
-                found += 1;
-            }
-        }
-        efficiency = Mathf.Clamp((float) (found - (minSurroundingTiles - 1)) / (maxSurroundingTiles - (minSurroundingTiles - 1)), 0f, 1f);
-        // Debug.Log(string.Format("Efficiency of building is {0} with {1} found tiles", efficiency, found));
-    }
+    public abstract void setEfficiency();
 }

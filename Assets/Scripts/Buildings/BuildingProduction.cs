@@ -15,7 +15,8 @@ public abstract class BuildingProduction : Building
     public bool inProgress;
     public float progress;
 
-    public void Update() {
+    public override void Update() {
+        base.Update();
         if (!inProgress){
             startWorking();
         }
@@ -35,7 +36,7 @@ public abstract class BuildingProduction : Building
     public void startWorking(){
         if (inputRessource == null || ressourceManager.isAvailable((int)inputRessource, 1))
         {
-            if (inputRessource != null) {ressourceManager.Retrieve((int)inputRessource, 1); }
+            if (inputRessource != null) {ressourceManager.Consume((int)inputRessource, 1); }
             inProgress = true;
             progress = 0f;
         }
@@ -43,5 +44,24 @@ public abstract class BuildingProduction : Building
         {
             return;
         }
+    }
+
+    public override void setEfficiency()
+    {
+        if (SurroundingTile == null)
+        {
+            efficiency = 1;
+            return;
+        }
+        int found = 0;
+        foreach (Tile surroundTile in tile.neighbors)
+        {
+            if (SurroundingTile.GetComponent<Tile>().TileType == surroundTile.TileType)
+            {
+                found += 1;
+            }
+        }
+        efficiency = Mathf.Clamp((float)(found - (minSurroundingTiles - 1)) / (maxSurroundingTiles - (minSurroundingTiles - 1)), 0f, 1f);
+        // Debug.Log(string.Format("Efficiency of building is {0} with {1} found tiles", efficiency, found));
     }
 }
