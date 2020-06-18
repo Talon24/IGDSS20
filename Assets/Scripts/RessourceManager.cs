@@ -103,7 +103,7 @@ public class RessourceManager : MonoBehaviour
         return available;
     }
 
-    public void put(int key, int amount){
+    public void put(int key, float amount){
         Stockpile[key].amount += amount;
     }
     

@@ -8,25 +8,10 @@ public class BuildingHousing : Building
     // Start is called before the first frame update
     public Transform Inhabitant;
 
-
-    // Todo: Refractor this!
-    public float fishValue;
-    public float clothValue;
-    public float schnappsValue;
-
-    public float fishProcessingTime;
-    public float clothProcessingTime;
-    public float schnappsProcessingTime;
-    public float fishProgress;
-    public float clothProgress;
-    public float schnappsProgress;
-
-    public bool fishInProgress;
-    public bool clothInProgress;
-    public bool schnappsInProgress;
-
     public float newInhabitantProgress;
     public float newInhabitantTime;
+    public float taxAmount;
+
 
     // public struct Needs
     // {
@@ -52,6 +37,8 @@ public class BuildingHousing : Building
     public override void Update() {
         base.Update();
 
+        ressourceManager.put((int)Ressources.Money, (efficiency * taxAmount * _workers.Count * Time.deltaTime) / ressourceManager.upkeepInterval);
+
         newInhabitantProgress += (Time.deltaTime / newInhabitantTime * efficiency);
         if (newInhabitantProgress >= 1f) {
             newInhabitantProgress = 0f;
@@ -61,30 +48,6 @@ public class BuildingHousing : Building
             }
         }
 
-        if (fishInProgress)  {fishProgress += (Time.deltaTime / fishProcessingTime * _workers.Count);} 
-        if (clothInProgress) { clothProgress += (Time.deltaTime / clothProcessingTime * _workers.Count); }
-        if (schnappsInProgress) { schnappsProgress += (Time.deltaTime / schnappsProcessingTime * _workers.Count); }
-
-        if (fishProgress >= 1f) {fishInProgress = false; fishProgress = 0f;}
-        if (clothProgress >= 1f) { clothInProgress = false; clothProgress = 0f; }
-        if (schnappsProgress >= 1f) { schnappsInProgress = false; schnappsProgress = 0f; }
-
-        if (!fishInProgress && ressourceManager.isAvailable((int)Ressources.Fish, 1)) 
-        {
-            ressourceManager.Consume((int)Ressources.Fish, 1);
-            fishInProgress = true;
-        }
-        if (!clothInProgress && ressourceManager.isAvailable((int)Ressources.Cloth, 1))
-        {
-            ressourceManager.Consume((int)Ressources.Cloth, 1);
-            clothInProgress = true;
-        }
-        if (!schnappsInProgress && ressourceManager.isAvailable((int)Ressources.Schnapps, 1))
-        {
-            ressourceManager.Consume((int)Ressources.Schnapps, 1);
-            schnappsInProgress = true;
-        }
-        // ressourceManager.buyAllowNegative((Time.deltaTime / ressourceManager.upkeepInterval) * upkeep);
     }
 
     
@@ -101,13 +64,12 @@ public class BuildingHousing : Building
 
     public override void setEfficiency()
     {
-        // Efficiency is analoguous to happiness
-        float totalValue = fishValue + clothValue + schnappsValue;
-        float happiness = (fishValue * Convert.ToInt32(fishInProgress) / totalValue) +
-                           (clothValue * Convert.ToInt32(clothInProgress) / totalValue) +
-                           (schnappsValue * Convert.ToInt32(schnappsInProgress) / totalValue);
-        efficiency = happiness;
-
-
+        float accu = 0f;
+        foreach (Worker worker in _workers)
+        {
+            accu += worker.happiness;
+        }
+        accu = accu / _workers.Count;
+        efficiency = accu;
     }
 }

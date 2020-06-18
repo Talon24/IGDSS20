@@ -78,20 +78,9 @@ MonoBehaviour:
   ressourceManager: {fileID: 0}
   Inhabitant: {fileID: 5436827496545086317, guid: 62f6137f70807cc47aa5365bc23d4b8a,
     type: 3}
-  fishValue: 5
-  clothValue: 5
-  schnappsValue: 5
-  fishProcessingTime: 60
-  clothProcessingTime: 120
-  schnappsProcessingTime: 180
-  fishProgress: 0
-  clothProgress: 0
-  schnappsProgress: 0
-  fishInProgress: 0
-  clothInProgress: 0
-  schnappsInProgress: 0
   newInhabitantProgress: 0
   newInhabitantTime: 30
+  taxAmount: 100
 --- !u!1001 &259406672196956846
 PrefabInstance:
   m_ObjectHideFlags: 0

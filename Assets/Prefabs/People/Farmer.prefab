@@ -13,7 +13,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _age: 0
-  _happiness: 0
+  happiness: 0
+  fishValue: 10
+  clothValue: 5
+  schnappsValue: 5
+  fishProcessingTime: 60
+  clothProcessingTime: 120
+  schnappsProcessingTime: 180
+  fishProgress: 0
+  clothProgress: 0
+  schnappsProgress: 0
+  fishInProgress: 0
+  clothInProgress: 0
+  schnappsInProgress: 0
 --- !u!1001 &5436827496544966129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72,6 +84,14 @@ PrefabInstance:
     - target: {fileID: 9581988, guid: 2fdb69d5b256cfa4e96c226f05a29874, type: 3}
       propertyPath: m_Controller
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9581988, guid: 2fdb69d5b256cfa4e96c226f05a29874, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 2ba66718d3169ae42a05d8facf302228, type: 3}
+    - target: {fileID: 9581988, guid: 2fdb69d5b256cfa4e96c226f05a29874, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fdb69d5b256cfa4e96c226f05a29874, type: 3}
