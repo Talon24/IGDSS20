@@ -33,10 +33,13 @@ public class GameManager : MonoBehaviour
         float x = heightmap.height;
         return new Vector2(x, z);
     }
-    void Start()
-    {
+
+    void Awake(){
         DevelopementDisable.gameObject.SetActive(false);
         Destroy(DevelopementDisable.gameObject);
+    }
+    void Start()
+    {
         // float edge_length = 17.323232f;
         // float long_diameter = 10f;
         this.map = new Tile[heightmap.height, heightmap.width];
