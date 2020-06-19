@@ -56,9 +56,10 @@ public class BuildingHousing : Building
     {
         for (int i = 0; i <= 1; i++)
         {
-        Worker w = Instantiate(Inhabitant, transform.position, transform.rotation, transform).GetComponent<Worker>();
-        // _workers.Add(w);
-        WorkerAssignedToBuilding(w);
+            Worker w = Instantiate(Inhabitant, transform.position, transform.rotation, transform).GetComponent<Worker>();
+            // _workers.Add(w);
+            w.BecomeOfAge();
+            WorkerAssignedToBuilding(w);
         }
     }
 

@@ -50,19 +50,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec43de6853ce0c4295a9ce51c3fd00b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jobManager: {fileID: 0}
+  _workers: []
+  maxWorkers: 25
+  build_requirement:
+  - {fileID: 4735863466978198210, guid: ff7ef13f88a71c94eb42898019398dcd, type: 3}
+  efficiency: 0
+  SurroundingTile: {fileID: 339247213230004273, guid: 2a914b6a4ef15cb4ca77257050f15f29,
+    type: 3}
+  tile: {fileID: 0}
+  minSurroundingTiles: 1
+  maxSurroundingTiles: 3
+  ressourceManager: {fileID: 0}
   initialCost: 100
   upkeep: 40
   outputAmount: 1
   ProcessingTime: 30
-  build_requirement:
-  - {fileID: 4735863466978198210, guid: ff7ef13f88a71c94eb42898019398dcd, type: 3}
   Name: Fishery
-  tile: {fileID: 0}
-  minSurroundingTiles: 1
-  maxSurroundingTiles: 3
-  SurroundingTile: {fileID: 339247213230004273, guid: 2a914b6a4ef15cb4ca77257050f15f29,
-    type: 3}
-  efficiency: 0
+  inProgress: 0
+  progress: 0
 --- !u!1001 &1104304314716300335
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -143,23 +143,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946db934ef9d03f439dbc3a2cd9dd1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialCost: 100
-  upkeep: 10
-  outputAmount: 1
-  ProcessingTime: 30
+  jobManager: {fileID: 0}
+  _workers: []
+  maxWorkers: 10
   build_requirement:
   - {fileID: 6146388628921357517, guid: f549c24ecaa45cb498514352a3675d1c, type: 3}
   - {fileID: 3904172423750652247, guid: beaf3e6eeb231784387cb99da90a7c7d, type: 3}
   - {fileID: 6778234312165509336, guid: 476946919e1d5104fb4c93f1dc2db5e9, type: 3}
-  Name: 
+  efficiency: 0
+  SurroundingTile: {fileID: 0}
   tile: {fileID: 0}
   minSurroundingTiles: 0
   maxSurroundingTiles: 0
-  SurroundingTile: {fileID: 0}
-  efficiency: 0
+  ressourceManager: {fileID: 0}
+  initialCost: 100
+  upkeep: 10
+  outputAmount: 1
+  ProcessingTime: 30
+  Name: 
   inProgress: 0
   progress: 0
-  ressourceManager: {fileID: 0}
 --- !u!1001 &452074576665218833
 PrefabInstance:
   m_ObjectHideFlags: 0

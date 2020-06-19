@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Transform mountain_tile;
     public Transform DevelopementDisable;
     public Transform MapParent;
+    public Transform BuildingParent;
     public RessourceManager ressourceManager;
     public JobManager jobManager;
 
@@ -238,7 +239,7 @@ public class GameManager : MonoBehaviour
         if (_selectedBuildingPrefabIndex < _buildingPrefabs.Length)
         {
             GameObject building = _buildingPrefabs[_selectedBuildingPrefabIndex];
-            t.placeBuilding(building, ressourceManager, jobManager);
+            t.placeBuilding(building, ressourceManager, jobManager, BuildingParent);
         }
     }
 

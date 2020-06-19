@@ -32,7 +32,7 @@ public abstract class Building : MonoBehaviour
         if (_workers.Count < maxWorkers)
         {
             _workers.Add(w);
-            jobManager._unoccupiedWorkers.Add(w);
+            // jobManager._unoccupiedWorkers.Add(w);
         } else {
             // TODO: Maybe throw exception? or return boolean?
         }

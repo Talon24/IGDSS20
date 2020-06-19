@@ -12,6 +12,10 @@ public class Worker : MonoBehaviour
     #endregion
 
     public float _age; // The age of this worker
+    [SerializeField]
+    private enum ages {Child, Worker, Retiree};
+    private int ageState;
+    public int secondsToAge = 15;
     public float happiness; // The happiness of this worker
 
 
@@ -31,12 +35,14 @@ public class Worker : MonoBehaviour
     public bool schnappsInProgress;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // GameObject worky = Instantiate(Worker());
         _jobManager = FindObjectOfType<JobManager>();
         _gameManager = FindObjectOfType<GameManager>();
         _ressourceManager = FindObjectOfType<RessourceManager>();
+        _age = 0;
+        ageState = (int)ages.Child;
     }
 
     // Update is called once per frame
@@ -83,26 +89,35 @@ public class Worker : MonoBehaviour
         //When becoming of age, the worker enters the job market, and leaves it when retiring.
         //Eventually, the worker dies and leaves an empty space in his home. His Job occupation is also freed up.
 
-        if (_age > 14)
+        _age += Time.deltaTime / secondsToAge;
+        if (ageState == (int)ages.Child && _age > 14)
         {
             BecomeOfAge();
         }
-
-        if (_age > 64)
+        else if (ageState == (int)ages.Worker && _age > 64)
         {
             Retire();
         }
-
-        if (_age > 100)
+        else if (ageState == (int)ages.Retiree && _age > 100)
         {
             Die();
         }
+        else {
+            return;
+        }
+        // If one of the aging conditions met
+        ageState += 1;
     }
 
 
     public void BecomeOfAge()
     {
         _jobManager.RegisterWorker(this);
+        if (_age < 14){
+            // If forced by being generated with building
+            _age = 14.0001f;
+            ageState = (int)ages.Worker;
+        }
     }
 
     private void Retire()

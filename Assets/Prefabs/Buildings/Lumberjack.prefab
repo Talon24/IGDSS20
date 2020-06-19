@@ -74,22 +74,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8f822ea0193d64b80cb4f06150add5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jobManager: {fileID: 0}
+  _workers: []
+  maxWorkers: 5
+  build_requirement:
+  - {fileID: 3904172423750652247, guid: beaf3e6eeb231784387cb99da90a7c7d, type: 3}
+  efficiency: 0
+  SurroundingTile: {fileID: 3904172423750652247, guid: beaf3e6eeb231784387cb99da90a7c7d,
+    type: 3}
+  tile: {fileID: 0}
+  minSurroundingTiles: 1
+  maxSurroundingTiles: 6
+  ressourceManager: {fileID: 0}
   initialCost: 0
   upkeep: 0
   outputAmount: 1
   ProcessingTime: 15
-  build_requirement:
-  - {fileID: 3904172423750652247, guid: beaf3e6eeb231784387cb99da90a7c7d, type: 3}
   Name: Lumberjack
-  tile: {fileID: 0}
-  minSurroundingTiles: 1
-  maxSurroundingTiles: 6
-  SurroundingTile: {fileID: 3904172423750652247, guid: beaf3e6eeb231784387cb99da90a7c7d,
-    type: 3}
-  efficiency: 0
   inProgress: 0
   progress: 0
-  ressourceManager: {fileID: 0}
 --- !u!1001 &1308281848552961018
 PrefabInstance:
   m_ObjectHideFlags: 0
