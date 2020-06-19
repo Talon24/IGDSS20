@@ -6,11 +6,13 @@ public class Job
 {
     public Worker _worker; //The worker occupying this job
     public Building _building; //The building offering the job
+    public string jobname;
 
     //Constructor. Call new Job(this) from the Building script to instanciate a job
-    public Job(Building building)
+    public Job(Building building, string jobname)
     {
         _building = building;
+        this.jobname = jobname;
     }
 
     public void AssignWorker(Worker w)

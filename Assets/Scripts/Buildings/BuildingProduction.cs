@@ -11,7 +11,6 @@ public abstract class BuildingProduction : Building
     public Nullable<int> outputRessource;
     public int outputAmount = 1;
     public int ProcessingTime;
-    public string Name;
     public bool inProgress;
     public float progress;
 

@@ -23,23 +23,35 @@ public abstract class Building : MonoBehaviour
     public int maxSurroundingTiles;
     public Dictionary<int, int> cost = new Dictionary<int, int>();
     public RessourceManager ressourceManager;
+    public string Name;
     #endregion
     
 
-    #region Methods   
+    #region Methods  
+
+    public void Start(){
+        for (int workplace = 0; workplace < maxWorkers; workplace++)
+        {
+            Job job = new Job(this, transform.name);
+            _jobs.Add(job);
+        }
+    }
+
+    public virtual void Update(){
+        setEfficiency();
+    }
+
     public void WorkerAssignedToBuilding(Worker w)
     {
         if (_workers.Count < maxWorkers)
         {
             _workers.Add(w);
             // jobManager._unoccupiedWorkers.Add(w);
-        } else {
+        }
+        else
+        {
             // TODO: Maybe throw exception? or return boolean?
         }
-    }
-
-    public virtual void Update(){
-        setEfficiency();
     }
 
     public void WorkerRemovedFromBuilding(Worker w)
