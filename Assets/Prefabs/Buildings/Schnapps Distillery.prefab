@@ -582,11 +582,11 @@ MonoBehaviour:
   minSurroundingTiles: 0
   maxSurroundingTiles: 0
   ressourceManager: {fileID: 0}
+  Name: 
   initialCost: 100
   upkeep: 40
   outputAmount: 1
   ProcessingTime: 30
-  Name: 
   inProgress: 0
   progress: 0
 --- !u!1 &8108791360913724509
@@ -892,6 +892,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8108791360751885427}
     m_Modifications:
+    - target: {fileID: -2204199597062558289, guid: 4cdd9622e6eb2a6498e3d47c96b87198,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5035642893912111872, guid: 4cdd9622e6eb2a6498e3d47c96b87198,
         type: 3}
       propertyPath: m_LocalPosition.x
