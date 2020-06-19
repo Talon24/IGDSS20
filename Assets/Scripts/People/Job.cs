@@ -21,9 +21,14 @@ public class Job
         _building.WorkerAssignedToBuilding(w);
     }
 
-    public void RemoveWorker(Worker w)
+    // public void RemoveWorker(Worker w)
+    // {
+    //     _worker = null;
+    //     _building.WorkerRemovedFromBuilding(w);
+    // }
+    public void RemoveWorker()
     {
+        _building.WorkerRemovedFromBuilding(_worker);
         _worker = null;
-        _building.WorkerRemovedFromBuilding(w);
     }
 }

@@ -127,6 +127,7 @@ public class Worker : MonoBehaviour
 
     private void Die()
     {
+        this.GetComponentInParent<Building>().WorkerRemovedFromBuilding(this);
         Destroy(this.gameObject, 1f);
     }
 

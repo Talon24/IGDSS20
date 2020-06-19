@@ -93,4 +93,10 @@ public abstract class BuildingProduction : Building
 
         // Debug.Log(string.Format("Efficiency of building is {0} with {1} found tiles", efficiency, found));
     }
+    public void OnDestroy(){
+        foreach (Job job in _jobs)
+        {
+            job.RemoveWorker();
+        }
+    }
 }
