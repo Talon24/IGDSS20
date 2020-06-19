@@ -9,12 +9,12 @@ public abstract class Building : MonoBehaviour
     #endregion
     
     #region Workers
-    public List<Worker> _workers; //List of all workers associated with this building, either for work or living
+    public List<Worker> _workers = new List<Worker>(); //List of all workers associated with this building, either for work or living
     public int maxWorkers;
     #endregion
 
     #region Jobs
-    public List<Job> _jobs; // List of all available Jobs. Is populated in Start()
+    public List<Job> _jobs = new List<Job>(); // List of all available Jobs. Is populated in Start()
     public Transform[] build_requirement;
     public float efficiency;
     public Transform SurroundingTile;

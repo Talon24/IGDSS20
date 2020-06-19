@@ -15,7 +15,6 @@ public abstract class BuildingProduction : Building
     public float progress;
 
     public void Awake(){
-        _jobs = new List<Job>();
     }
 
     public void Start()
@@ -60,10 +59,10 @@ public abstract class BuildingProduction : Building
     }
 
     private float averageWorkerHappiness(){
-        float accu = 0f;
         if (_workers.Count == 0){
             return 0;
         }
+        float accu = 0f;
         foreach (Worker worker in _workers)
         {
             accu += worker.happiness;
@@ -98,7 +97,7 @@ public abstract class BuildingProduction : Building
     public void OnDestroy(){
         foreach (Job job in _jobs)
         {
-            job.RemoveWorker();
+            jobManager.UnregisterJob(job);
         }
     }
 }

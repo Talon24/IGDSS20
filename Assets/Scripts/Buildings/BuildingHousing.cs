@@ -73,4 +73,11 @@ public class BuildingHousing : Building
         accu = accu / _workers.Count;
         efficiency = accu;
     }
+
+    public void OnDestroy(){
+        foreach (Worker worker in _workers)
+        {
+            jobManager.RemoveWorker(worker);
+        }
+    }
 }

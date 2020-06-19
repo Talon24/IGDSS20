@@ -69,6 +69,7 @@ public class JobManager : MonoBehaviour
 
     public void UnregisterJob(Job j)
     {
+        _unoccupiedWorkers.Remove(j._worker);
         j.RemoveWorker();
         _availableJobs.Remove(j);
     }
