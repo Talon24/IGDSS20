@@ -14,10 +14,12 @@ public abstract class BuildingProduction : Building
     public bool inProgress;
     public float progress;
 
+    public void Awake(){
+        _jobs = new List<Job>();
+    }
 
     public void Start()
     {
-        _jobs = new List<Job>();
         for (int workplace = 0; workplace < maxWorkers; workplace++)
         {
             Job job = new Job(this, transform.name);
