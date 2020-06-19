@@ -14,6 +14,18 @@ public abstract class BuildingProduction : Building
     public bool inProgress;
     public float progress;
 
+
+    public void Start()
+    {
+        _jobs = new List<Job>();
+        for (int workplace = 0; workplace < maxWorkers; workplace++)
+        {
+            Job job = new Job(this, transform.name);
+            _jobs.Add(job);
+            jobManager.RegisterJob(job);
+        }
+    }
+
     public override void Update() {
         base.Update();
         if (!inProgress){
@@ -45,6 +57,18 @@ public abstract class BuildingProduction : Building
         }
     }
 
+    private float averageWorkerHappiness(){
+        float accu = 0f;
+        if (_workers.Count == 0){
+            return 0;
+        }
+        foreach (Worker worker in _workers)
+        {
+            accu += worker.happiness;
+        }
+        return accu / _workers.Count;
+    }
+
     public override void setEfficiency()
     {
         if (SurroundingTile == null)
@@ -60,7 +84,13 @@ public abstract class BuildingProduction : Building
                 found += 1;
             }
         }
+        // Apply efficiency from surrounding tiles
         efficiency = Mathf.Clamp((float)(found - (minSurroundingTiles - 1)) / (maxSurroundingTiles - (minSurroundingTiles - 1)), 0f, 1f);
+        // Apply efficiency from number of workers
+        efficiency *= (float)_workers.Count / maxWorkers;
+        // Apply efficiency from workers happiness
+        efficiency *= 0.5f + averageWorkerHappiness() / 2f;
+
         // Debug.Log(string.Format("Efficiency of building is {0} with {1} found tiles", efficiency, found));
     }
 }

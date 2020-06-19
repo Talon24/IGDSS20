@@ -33,6 +33,14 @@ public class JobManager : MonoBehaviour
         {
 
             //TODO: What should be done with unoccupied workers?
+            if (_availableJobs.Count > 0) {
+                int job_index = Random.Range(0,_availableJobs.Count);
+                Worker w = _unoccupiedWorkers[0];
+                Job j = _availableJobs[job_index];
+                j.AssignWorker(w);
+                _unoccupiedWorkers.RemoveAt(0);
+                _availableJobs.RemoveAt(job_index);
+            }
 
         }
     }
@@ -50,4 +58,9 @@ public class JobManager : MonoBehaviour
     }
 
     #endregion
+
+    public void RegisterJob(Job j)
+    {
+        _availableJobs.Add(j);
+    }
 }

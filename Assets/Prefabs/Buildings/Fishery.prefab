@@ -62,11 +62,11 @@ MonoBehaviour:
   minSurroundingTiles: 1
   maxSurroundingTiles: 3
   ressourceManager: {fileID: 0}
+  Name: Fishery
   initialCost: 100
   upkeep: 40
   outputAmount: 1
   ProcessingTime: 30
-  Name: Fishery
   inProgress: 0
   progress: 0
 --- !u!1001 &1104304314716300335

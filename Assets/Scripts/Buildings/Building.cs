@@ -29,14 +29,6 @@ public abstract class Building : MonoBehaviour
 
     #region Methods  
 
-    public void Start(){
-        for (int workplace = 0; workplace < maxWorkers; workplace++)
-        {
-            Job job = new Job(this, transform.name);
-            _jobs.Add(job);
-        }
-    }
-
     public virtual void Update(){
         setEfficiency();
     }
@@ -64,6 +56,5 @@ public abstract class Building : MonoBehaviour
     {
 
     }
-
     public abstract void setEfficiency();
 }
