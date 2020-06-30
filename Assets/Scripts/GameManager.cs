@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public RessourceManager ressourceManager;
     public JobManager jobManager;
 
-    private Tile[,] map;
+    public Tile[,] map;
     private float long_diameter = 10f;
     private float edge_length = 17.323232f;
 
