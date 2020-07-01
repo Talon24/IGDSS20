@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +9,6 @@ public class NavigationManager : MonoBehaviour
 
     private Tile[,] map;
 
-
-    private struct PathStep
-    {
-        public Tile tile;
-        public int weight;
-    }
-
     void Start()
     {
         map = gameManager.map;
@@ -22,46 +16,66 @@ public class NavigationManager : MonoBehaviour
 
     public void register(Tile tile)
     {
-        generateMap(tile, new List<Tile>());
+        generateMap(tile);
     }
 
     public void unregister(Tile tile)
     {
-
+        foreach (Tile mapTile in gameManager.map)
+        {
+            mapTile.navigationPotentials.Remove(tile);
+        }
     }
 
-    private void generateMap(Tile tile, List<Tile> visited)
+    private void generateMap(Tile originTile)
     {
-        tile.navigationDirections[tile] = null;
-        visited.Add(tile);
-        List<PathStep> queue = new List<PathStep>();
-        foreach (Tile tileNeighbor in tile.neighbors)
+        originTile.navigationPotentials[originTile] = 0f;
+        List<Tile> visited = new List<Tile>();
+        visited.Add(originTile);
+        List<Tile> queue = new List<Tile>();
+        foreach (Tile tileNeighbor in originTile.neighbors)
         {
-            PathStep step = new PathStep();
-            step.tile = tileNeighbor;
-            step.weight = 0;
-            queue.Add(step);
+            queue.Add(tileNeighbor);
         }
 
         while (queue.Count > 0)
         {
-            List<PathStep> newQueue = new List<PathStep>();
-            foreach (PathStep step in queue)
+            List<Tile> newQueue = new List<Tile>();
+            foreach (Tile tile in queue)
             {
-                Tile newTile = step.tile;
-                foreach (Tile tileNeighbor in newTile.neighbors)
+                visited.Add(tile);
+                tile.navigationPotentials[originTile] = tile.distance2D(originTile) + tile.navigationWeight;  // TODO
+                foreach (Tile tileNeighbor in tile.neighbors)
                 {
-                    if (!visited.Contains(tileNeighbor))
+                    if (!visited.Contains(tileNeighbor) && !newQueue.Contains(tileNeighbor) && !queue.Contains(tileNeighbor))
                     {
-                        PathStep newStep = new PathStep();
-                        newStep.tile = tileNeighbor;
-                        newStep.weight = step.weight + tile.navigationWeight;
-                        newQueue.Add(newStep);
+                        newQueue.Add(tileNeighbor);
                     }   
                 }
             }
             queue = newQueue;
         }
+    }
+
+    public List<Tile> getPath(Tile from, Tile to){
+        List<Tile> trace = new List<Tile>();
+        trace.Add(from);
+
+        float minPotential = from.neighbors.Select(x => x.navigationPotentials[to]).Min();
+        Tile next = from.neighbors.Find(x => x.navigationPotentials[to] == minPotential);
+        trace.Add(next);
+        while (next != to){
+            minPotential = next.neighbors.Select(x => x.navigationPotentials[to]).Min();
+            next = next.neighbors.Find(x => x.navigationPotentials[to] == minPotential);
+            trace.Add(next);
+        }
+
+
+        foreach (Tile tile in trace)
+        {
+            Debug.Log(string.Format("Tile on the way x: {0}, z:", tile.position.x, tile.position.z));
+        }
+        return trace;
     }
 
     // private void generateMapChild(Tile tile, Tile origin, List<Tile> visited)

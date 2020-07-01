@@ -12,8 +12,10 @@ public class Tile : MonoBehaviour{
     public Tile baseVersion;
     public Transform decorationPrefab;
     private Transform decoration;
+    public NavigationManager navigationManager;
 
-    public Dictionary<Tile, Tile> navigationDirections = new Dictionary<Tile, Tile>();
+    [SerializeField]
+    public Dictionary<Tile, float> navigationPotentials = new Dictionary<Tile, float>();
     public int navigationWeight;
 
     public Building _building; //The building on this tile
@@ -65,6 +67,10 @@ public class Tile : MonoBehaviour{
         return "Test";
     }
 
+    public float distance2D(Tile otherTile){
+        return Mathf.Sqrt(Mathf.Pow(this.position.x - otherTile.position.x, 2) + Mathf.Pow(this.position.z - otherTile.position.z, 2));
+    }
+
     public bool fitsRequirement(Transform[] required)
     {
         if (required == null || required.Length == 0)
@@ -94,12 +100,14 @@ public class Tile : MonoBehaviour{
                 _building.ressourceManager = ressourceManager;
                 _building.jobManager = jobManager;
                 _building.launch();
+                navigationManager.register(this);
             } 
             else 
             { // Revert changes
                 Destroy(_building.gameObject);
                 _building = null;
                 decoration.gameObject.SetActive(true);
+                navigationManager.unregister(this);
             }
         }
         else {
