@@ -48,6 +48,21 @@ public class Tile : MonoBehaviour{
         return abs_position;
     }
 
+    public Vector3 position_absolute2D()
+    {
+        Vector3 abs_position;
+        // Debug.Log((position.x, position.z));
+        if (position.x % 2 == 0)
+        {
+            abs_position = new Vector3(position.x / 2 * edge_length, 0, position.z * long_diameter);
+        }
+        else
+        {
+            abs_position = new Vector3(((position.x - 1) / 2 * edge_length) + 8.66f, 0, (position.z * long_diameter) + 5);
+        }
+        return abs_position;
+    }
+
     public override bool Equals(object obj)
     {
         return base.Equals(obj);
@@ -68,7 +83,15 @@ public class Tile : MonoBehaviour{
     }
 
     public float distance2D(Tile otherTile){
-        return Mathf.Sqrt(Mathf.Pow(this.position.x - otherTile.position.x, 2) + Mathf.Pow(this.position.z - otherTile.position.z, 2));
+        return Mathf.Sqrt(Mathf.Pow(this.position.x - otherTile.position.x, 2) +
+                          Mathf.Pow(this.position.z - otherTile.position.z, 2));
+    }
+    public float realDistance2D(Tile otherTile)
+    {
+        Vector3 a = this.position_absolute();
+        Vector3 b = otherTile.position_absolute();
+        return Mathf.Sqrt(Mathf.Pow(a.x - b.x, 2) +
+                          Mathf.Pow(a.z - b.z, 2));
     }
 
     public bool fitsRequirement(Transform[] required)

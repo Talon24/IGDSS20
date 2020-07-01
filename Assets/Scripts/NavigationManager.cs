@@ -71,10 +71,10 @@ public class NavigationManager : MonoBehaviour
         }
 
 
-        foreach (Tile tile in trace)
-        {
-            Debug.Log(string.Format("Tile on the way x: {0}, z:", tile.position.x, tile.position.z));
-        }
+        // foreach (Tile tile in trace)
+        // {
+        //     Debug.Log(string.Format("Tile on the way x: {0}, z:", tile.position.x, tile.position.z));
+        // }
         return trace;
     }
 

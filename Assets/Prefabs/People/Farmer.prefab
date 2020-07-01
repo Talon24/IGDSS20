@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _age: 0
+  secondsToAge: 15
   happiness: 0
   fishValue: 10
   clothValue: 5
@@ -26,6 +27,9 @@ MonoBehaviour:
   fishInProgress: 0
   clothInProgress: 0
   schnappsInProgress: 0
+  stayAtPlace: 5
+  walkProgress: 0
+  walkQueue: []
 --- !u!1001 &5436827496544966129
 PrefabInstance:
   m_ObjectHideFlags: 0

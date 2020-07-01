@@ -73,4 +73,8 @@ public class JobManager : MonoBehaviour
         j.RemoveWorker();
         _availableJobs.Remove(j);
     }
+
+    public Job getJob(Worker w){
+        return _availableJobs.Find(x => x._worker == w);
+    }
 }
