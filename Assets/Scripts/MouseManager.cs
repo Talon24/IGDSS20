@@ -172,8 +172,32 @@ public class MouseManager : MonoBehaviour
                     if (istile){
                         Tile tile = hit.collider.GetComponent<Tile>();
                         Debug.Log(string.Format("Clicked tile is {0}", tile.name));
+
+                        if (manager.debugMode) {
+                            if (tile.navigationPotentials.Count == 0) {
+                                Debug.Log(string.Format("No potentials saved"));
+                            }
+                            foreach (var item in tile.navigationPotentials){
+                                Debug.Log(string.Format("Potential to {0} is {1}", item.Key, item.Value));
+                            }
+
+                            foreach (var target in tile.navigationPotentials)
+                            {
+                                Tile targetTile = target.Key;
+                                NavigationManager nav = GameObject.FindObjectOfType<NavigationManager>();
+                                List<Tile> path = nav.getPath(tile, targetTile);
+                                foreach (Tile pathTile in path)
+                                {
+                                    // pathTile.gameObject.SetActive(false);
+                                    Debug.Log(string.Format("Step goes over {0}", pathTile.position));
+                                }
+                                break;
+                            }
+
+                        } else {
+                            manager.PlaceBuildingOnTile(tile);
+                        }
                         // tile.test();
-                        manager.PlaceBuildingOnTile(tile);
                         // Debug.Log(string.Join(", ", tile.neighbors));
                         // foreach (Tile tile_ in tile.neighbors)
                         // {

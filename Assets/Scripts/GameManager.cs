@@ -17,8 +17,10 @@ public class GameManager : MonoBehaviour
     public Transform BuildingParent;
     public RessourceManager ressourceManager;
     public JobManager jobManager;
+    public NavigationManager navigationManager;
+    public bool debugMode = false;
 
-    private Tile[,] map;
+    public Tile[,] map;
     private float long_diameter = 10f;
     private float edge_length = 17.323232f;
 
@@ -78,6 +80,7 @@ public class GameManager : MonoBehaviour
                 Tile tile_ = tileObject.GetComponent<Tile>();
                 tile_.position = new Vector3(x, height, y);
                 tile_.rotation = rotation;
+                tile_.navigationManager = navigationManager;
                 map[x, y] = tile_;
 
             }
@@ -161,6 +164,11 @@ public class GameManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             _selectedBuildingPrefabIndex = 9;
+        }
+        else if (Input.GetKeyDown(KeyCode.KeypadDivide))
+        {
+            debugMode = !debugMode;
+            Debug.Log(string.Format("Debugmode is now {0}!", debugMode));
         }
         else {
             return;
