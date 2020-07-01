@@ -106,6 +106,9 @@ public class Worker : MonoBehaviour
                 Vector3 relative = walkQueue[1].position_absolute2D() - walkQueue[0].position_absolute2D();
                 transform.rotation = Quaternion.LookRotation(relative, Vector3.up);
                 transform.Translate(transform.forward * walkQueue[0].realDistance2D(walkQueue[1]) * diff, Space.World);
+                Vector3 pos = transform.position;
+                pos.y = walkProgress < 0.5 ? walkQueue[0].transform.position.y : walkQueue[1].transform.position.y;
+                transform.position = pos;
             } else if (walkProgress >= 1f) {
                 transform.position = walkQueue[1].transform.position;
 
