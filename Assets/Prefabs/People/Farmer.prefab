@@ -27,6 +27,7 @@ MonoBehaviour:
   fishInProgress: 0
   clothInProgress: 0
   schnappsInProgress: 0
+  timeAtPlace: 0
   stayAtPlace: 5
   walkProgress: 0
   walkQueue: []
@@ -88,7 +89,7 @@ PrefabInstance:
     - target: {fileID: 9581988, guid: 2fdb69d5b256cfa4e96c226f05a29874, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 164247bbb2bb05a49ba362bff4e1ddd8, type: 2}
     - target: {fileID: 9581988, guid: 2fdb69d5b256cfa4e96c226f05a29874, type: 3}
       propertyPath: m_Avatar
       value: 

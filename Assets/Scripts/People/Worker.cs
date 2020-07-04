@@ -40,8 +40,11 @@ public class Worker : MonoBehaviour
     [SerializeField]
     float timeAtPlace = 0;
     public float stayAtPlace;
+    private float stayAtPlacePreference;
     public float walkProgress;
     public List<Tile> walkQueue = new List<Tile>();
+
+    private Animator animator;
 
     // Start is called before the first frame update
     void Awake()
@@ -54,7 +57,9 @@ public class Worker : MonoBehaviour
         _age = 0;
         ageState = (int)ages.Child;
         positionState = (int)Positions.Home;
-
+        animator = GetComponent<Animator>();
+        animator.SetBool("isWalking", false);
+        stayAtPlacePreference = UnityEngine.Random.Range(-1f, 1f);
     }
 
     // Update is called once per frame
@@ -100,7 +105,11 @@ public class Worker : MonoBehaviour
         if (walkQueue.Count > 1)
         {
             if (walkProgress < 1f){
-                float diff = Time.deltaTime * (1.0f / walkQueue[0].navigationWeight);
+                float speed = (0.8f / walkQueue[0].navigationWeight);
+                animator.SetFloat("speed", speed);
+                // speed = speed * 0.8f;  // to match animation and actual
+                float diff = Time.deltaTime * speed;
+                diff = diff / 2.0f;
                 walkProgress += diff;
                 // transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 10, 0);
                 Vector3 relative = walkQueue[1].position_absolute2D() - walkQueue[0].position_absolute2D();
@@ -124,6 +133,7 @@ public class Worker : MonoBehaviour
             timeAtPlace = 0;
             positionState += 1;
             positionState %= 2;
+            animator.SetBool("isWalking", false);
         } else {
             timeAtPlace += Time.deltaTime;
         }
@@ -137,7 +147,7 @@ public class Worker : MonoBehaviour
     private void commute()
     {
         Job job = _jobManager.getJob(this);
-        if (ageState == (int)ages.Worker && job != null && walkQueue.Count == 0 && timeAtPlace >= stayAtPlace){
+        if (ageState == (int)ages.Worker && job != null && walkQueue.Count == 0 && timeAtPlace >= stayAtPlace + stayAtPlacePreference){
             List<Tile> route = new List<Tile>();
             if (positionState == (int)Positions.Home){
                 route = _navigationManager.getPath(gameObject.GetComponentInParent<Building>().tile, job._building.tile);
@@ -145,6 +155,7 @@ public class Worker : MonoBehaviour
                 route = _navigationManager.getPath(job._building.tile, gameObject.GetComponentInParent<Building>().tile);
             }
             walkQueue.AddRange(route);
+            animator.SetBool("isWalking", true);
         }
     }
 

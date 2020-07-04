@@ -56,7 +56,9 @@ public class JobManager : MonoBehaviour
     {
         _unoccupiedWorkers.Remove(w);
         Job workersJob = _availableJobs.Find(job => job._worker == w);
-        workersJob.RemoveWorker();
+        if (workersJob != null){
+            workersJob.RemoveWorker();
+        }
         
     }
 

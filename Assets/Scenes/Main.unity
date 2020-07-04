@@ -2268,6 +2268,7 @@ MonoBehaviour:
   ressourceManager: {fileID: 373529232}
   jobManager: {fileID: 2109123444}
   navigationManager: {fileID: 101919904}
+  debugMode: 0
   _buildingPrefabs:
   - {fileID: 1731654303819961898, guid: 3406c19d2c3b2c04da324f23062fc933, type: 3}
   - {fileID: 1907623195153597716, guid: e2c2be93461999840a0d03c47d1b80c2, type: 3}
@@ -3407,7 +3408,7 @@ PrefabInstance:
     - target: {fileID: 5436827496545086317, guid: 62f6137f70807cc47aa5365bc23d4b8a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 17.62
       objectReference: {fileID: 0}
     - target: {fileID: 5436827496545086317, guid: 62f6137f70807cc47aa5365bc23d4b8a,
         type: 3}
