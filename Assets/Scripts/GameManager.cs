@@ -91,13 +91,18 @@ public class GameManager : MonoBehaviour
         }
         foreach (Tile tile in map)
         {
-            foreach (KeyValuePair<float, Tile> kv in tile.neighborsDirectional = FindNeighborsOfTileDirectional(tile))
+            foreach (KeyValuePair<float, Tile> kv in FindNeighborsOfTileDirectional(tile))
             {
                 Tile neighbor = kv.Value;
-                if (neighbor == null || neighbor.TileType != tile.TileType)
+                if (neighbor != null)
                 {
-                    Instantiate(Edge, tile.position_absolute(), Quaternion.Euler(0, kv.Key - 60f, 0));
                     // angleFrom assumes that the right edge of the tile is 0 degrees.
+                    Transform edge = Instantiate(Edge, tile.position_absolute(),
+                                                 Quaternion.Euler(0, kv.Key - 60f, 0), tile.transform);
+                    if (neighbor != null) {tile.edges.Add(neighbor, edge);}
+                    if (neighbor.TileType == tile.TileType){edge.gameObject.SetActive(false);}
+                } else {
+                    Instantiate(Edge, tile.position_absolute(), Quaternion.Euler(0, kv.Key - 60f, 0));
                 }
             }
         }

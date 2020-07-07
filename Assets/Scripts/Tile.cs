@@ -9,8 +9,8 @@ public class Tile : MonoBehaviour{
     private float long_diameter = 10f;
     private float edge_length = 17.323232f;
     public List<Tile> neighbors;
-    public Dictionary<float, Tile> neighborsDirectional;
-    public Tile baseVersion;
+    public Dictionary<Tile, Transform> edges =  new Dictionary<Tile, Transform>();
+    // Edges are mapped by the tile they lie between with the original tile (Outer edges not tracked)
     public Transform decorationPrefab;
     private Transform decoration;
     public NavigationManager navigationManager;
