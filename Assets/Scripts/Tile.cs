@@ -9,6 +9,7 @@ public class Tile : MonoBehaviour{
     private float long_diameter = 10f;
     private float edge_length = 17.323232f;
     public List<Tile> neighbors;
+    public Dictionary<float, Tile> neighborsDirectional;
     public Tile baseVersion;
     public Transform decorationPrefab;
     private Transform decoration;
@@ -140,4 +141,25 @@ public class Tile : MonoBehaviour{
         }
     }
 
+    public float angleFrom(Tile other){
+        Vector3 direction = position_absolute() - other.position_absolute();
+        float x = direction.x;
+        float z = direction.z;
+        if (x == 0) {
+            return z < 0 ? 180f : 0f;
+        } else if (x < 0) {
+            return z < 0 ? 240f : 300f;
+        } else if (x > 0) {
+            return z < 0 ? 120f : 60f;
+        }
+        return 0f;
+        // if (position.y == other.position.y){
+        //     if (position.x > other.position.x){
+        //         return 0f;
+        //     } else {
+        //         return 180f;
+        //     }
+        // }
+        // return 0f;
+    }
 }

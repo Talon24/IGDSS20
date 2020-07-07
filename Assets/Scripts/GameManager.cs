@@ -86,16 +86,31 @@ public class GameManager : MonoBehaviour
 
             }
         }
-    foreach (Tile tile in map) {
-        tile.neighbors = FindNeighborsOfTile(tile);
-    }
-    foreach (Tile tile in map)
-    {
-        for (int i = 0; i < 6; i++)
-        {
-            Instantiate(Edge, tile.position_absolute(), Quaternion.Euler(0, i * 60f, 0));
+        foreach (Tile tile in map) {
+            tile.neighbors = FindNeighborsOfTile(tile);
         }
-    }
+        foreach (Tile tile in map)
+        {
+            foreach (KeyValuePair<float, Tile> kv in tile.neighborsDirectional = FindNeighborsOfTileDirectional(tile))
+            {
+                Tile neighbor = kv.Value;
+                if (neighbor == null || neighbor.TileType != tile.TileType)
+                {
+                    Instantiate(Edge, tile.position_absolute(), Quaternion.Euler(0, kv.Key - 60f, 0));
+                    // angleFrom assumes that the right edge of the tile is 0 degrees.
+                }
+            }
+        }
+        // foreach (Tile tile in map)
+        // {
+        //     foreach (KeyValuePair<float, Tile> kv in tile.neighborsDirectional)
+        //     {
+        //         Tile neighbor = kv.Value;
+        //         if (neighbor == null || neighbor.TileType != tile.TileType){
+        //             Instantiate(Edge, tile.position_absolute(), Quaternion.Euler(0, kv.Key, 0));
+        //         }
+        //     }
+        // }
     }
 
     public Vector3 position_absolute(float x, float y, float z)
@@ -250,6 +265,29 @@ public class GameManager : MonoBehaviour
                     // Debug.Log(string.Format("x: {0}, y: {1}", x, y));
                         result.Add(map[y, x]);
                     }
+            }
+        }
+
+        // Debug.Log(string.Join(", ", result));
+        return result;
+    }
+    public Dictionary<float, Tile> FindNeighborsOfTileDirectional(Tile t)
+    {
+        Dictionary<float, Tile> result = new Dictionary<float, Tile>();
+        // float[] angles = new float[]{240, 300, 180, 0, 120, 60};
+        // float[] angles = new float[] { 120, 60, 180, 0, 240, 300 };
+        // float[] angles = new float[] { 180, 120, 240, 60, 300, 0 };
+        float[] angles = new float[] { 0, 60, 120, 180, 240, 300 };
+        foreach (Tile tile in t.neighbors)
+        {
+            result.Add(tile.angleFrom(t), tile);
+        }
+
+        foreach (float angle in angles)
+        {
+            if (!result.ContainsKey(angle))
+            {
+                result.Add(angle, null);
             }
         }
 
