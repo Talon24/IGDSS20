@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public JobManager jobManager;
     public NavigationManager navigationManager;
     public bool debugMode = false;
+    public Transform Edge;
 
     public Tile[,] map;
     private float long_diameter = 10f;
@@ -87,6 +88,13 @@ public class GameManager : MonoBehaviour
         }
     foreach (Tile tile in map) {
         tile.neighbors = FindNeighborsOfTile(tile);
+    }
+    foreach (Tile tile in map)
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            Instantiate(Edge, tile.position_absolute(), Quaternion.Euler(0, i * 60f, 0));
+        }
     }
     }
 

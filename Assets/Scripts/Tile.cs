@@ -139,4 +139,5 @@ public class Tile : MonoBehaviour{
             decoration.gameObject.SetActive(true);
         }
     }
+
 }
