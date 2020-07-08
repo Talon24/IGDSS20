@@ -12,16 +12,22 @@ public class MouseManager : MonoBehaviour
     public int max_zoom_out = 100;
     public Camera cam;
     public int tile_layer_mask = 8;
+    public int ui_layer_mask = 5;
     private Vector3 previous_raycast_hit;
     private float previous_raycast_length;
     public GameManager manager;
 
     private Vector2 area_limits2;
+    public int fingerID = -1;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         area_limits2 = manager.get_map_size();
+        #if !UNITY_EDITOR
+        fingerID = 0; 
+        #endif
     }
 
     // Update is called once per frame
@@ -153,15 +159,14 @@ public class MouseManager : MonoBehaviour
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, 200.0f, 1 << tile_layer_mask)) {
+            if (Physics.Raycast(ray, out hit, 200.0f, 1 << tile_layer_mask & 1 << ui_layer_mask)) {
                 if (hit.transform != null){
                     // Debug.Log(string.Format("Clicked tile is {0}", hit.transform.gameObject.name));
                     // Debug.Log(string.Format("Clicked tile is {0}", hit.transform.gameObject.GetType()));
                     bool istile = false;
                     try
                     {   
-                        hit.collider.GetComponent<Tile>();
-                        istile = true;
+                        istile = hit.collider.GetComponent<Tile>() != null;
                         // Debug.Log(string.Format("Clicked tile is {0}", tile.name));
                         // Debug.Log(string.Format("Clicked tile is {0}", tile.position));
                     }

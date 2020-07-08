@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -71,7 +72,7 @@ public class GameManager : MonoBehaviour
                 else if (0.6 < pixel_val && pixel_val <= 0.8f) { tile = stone_tile; height = pixel_val * multiplicator; }
                 else if (0.8 < pixel_val && pixel_val <= 1.0f) { tile = mountain_tile; height = pixel_val * multiplicator; }
 
-                float rotation =  360f / 6f * Random.Range(0, 5);
+                float rotation =  360f / 6f * UnityEngine.Random.Range(0, 5);
 
                 // map[x, y] = new Tile(tile, x, y, height, rotation);
                 // map[x, y].place();
@@ -151,6 +152,11 @@ public class GameManager : MonoBehaviour
     //Makes the resource dictionary usable by populating the values and key
 
     //Sets the index for the currently selected building prefab by checking key presses on the numbers 1 to 0
+
+    public void SetSelectedBuilding(GameObject b){
+        _selectedBuildingPrefabIndex = Array.IndexOf(_buildingPrefabs, b);
+        Debug.Log(string.Format("Index: {0}, Name: {1}", _selectedBuildingPrefabIndex, _buildingPrefabs[_selectedBuildingPrefabIndex].name));
+    }
     void HandleKeyboardInput()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
