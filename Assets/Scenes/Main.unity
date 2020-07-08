@@ -354,7 +354,6 @@ MonoBehaviour:
   position: {x: 0, y: 0, z: 0}
   rotation: 0
   neighbors: []
-  baseVersion: {fileID: 0}
   decorationPrefab: {fileID: 0}
   navigationManager: {fileID: 0}
   navigationWeight: 0
@@ -2269,6 +2268,7 @@ MonoBehaviour:
   jobManager: {fileID: 2109123444}
   navigationManager: {fileID: 101919904}
   debugMode: 0
+  Edge: {fileID: -4216859302048453862, guid: c844cf5b0a2fcd047a7c99d82b31c137, type: 3}
   _buildingPrefabs:
   - {fileID: 1731654303819961898, guid: 3406c19d2c3b2c04da324f23062fc933, type: 3}
   - {fileID: 1907623195153597716, guid: e2c2be93461999840a0d03c47d1b80c2, type: 3}
