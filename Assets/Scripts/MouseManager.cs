@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MouseManager : MonoBehaviour
 {
@@ -159,7 +160,7 @@ public class MouseManager : MonoBehaviour
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, 200.0f, 1 << tile_layer_mask & 1 << ui_layer_mask)) {
+            if (Physics.Raycast(ray, out hit, 200.0f, 1 << tile_layer_mask & 1 << ui_layer_mask) && !EventSystem.current.IsPointerOverGameObject(fingerID)) {
                 if (hit.transform != null){
                     // Debug.Log(string.Format("Clicked tile is {0}", hit.transform.gameObject.name));
                     // Debug.Log(string.Format("Clicked tile is {0}", hit.transform.gameObject.GetType()));
