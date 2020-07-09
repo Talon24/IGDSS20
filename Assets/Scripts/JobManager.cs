@@ -33,15 +33,26 @@ public class JobManager : MonoBehaviour
         {
 
             //TODO: What should be done with unoccupied workers?
-            List<Job> freeJobs = _availableJobs.FindAll(x => x._worker == null);  // This might need to be a list that is maintained instead of done every time.
+            List<Job> freeJobs = _availableJobs.FindAll(x => x.free());  // This might need to be a list that is maintained instead of done every time.
             if (freeJobs.Count > 0) {
                 int job_index = Random.Range(0,freeJobs.Count);
                 Worker w = _unoccupiedWorkers[0];
-                Job j = _availableJobs[job_index];
+                Job j = freeJobs[job_index];
                 j.AssignWorker(w);
                 _unoccupiedWorkers.RemoveAt(0);
             }
         }
+    }
+
+    public int PopulationNumber(){
+        int result = 0;
+        result += _availableJobs.FindAll(x => !x.free()).Count;
+        result += _unoccupiedWorkers.Count;
+        return result;
+    }
+
+    public int freeWorkers(){
+        return _unoccupiedWorkers.Count;
     }
 
 
@@ -71,7 +82,11 @@ public class JobManager : MonoBehaviour
 
     public void UnregisterJob(Job j)
     {
-        _unoccupiedWorkers.Remove(j._worker);
+        if (!j.free()) {
+            _unoccupiedWorkers.Add(j._worker);
+            Worker w = j._worker;
+            w.SendHome();
+        }
         j.RemoveWorker();
         _availableJobs.Remove(j);
     }

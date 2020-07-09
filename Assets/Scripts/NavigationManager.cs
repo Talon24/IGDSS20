@@ -65,7 +65,11 @@ public class NavigationManager : MonoBehaviour
         Tile next = from.neighbors.Find(x => x.navigationPotentials[to] == minPotential);
         trace.Add(next);
         while (next != to){
-            minPotential = next.neighbors.Select(x => x.navigationPotentials[to]).Min();
+            // If this ever results to just going back and forth it will explode!!!
+            IEnumerable<Tile> backwalks = trace.Intersect(next.neighbors);
+            List<Tile> candidates = new List<Tile>(next.neighbors);
+            candidates.RemoveAll(x => backwalks.Contains(x));
+            minPotential = candidates.Select(x => x.navigationPotentials[to]).Min();
             next = next.neighbors.Find(x => x.navigationPotentials[to] == minPotential);
             trace.Add(next);
         }

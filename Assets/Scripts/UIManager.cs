@@ -34,6 +34,6 @@ public class UIManager : MonoBehaviour
         Cloth.text = string.Format(discreteItem, ressourceManager.get((int)Ressources.Cloth));
         Potato.text = string.Format(discreteItem, ressourceManager.get((int)Ressources.Potato));
         Schnapps.text = string.Format(discreteItem, ressourceManager.get((int)Ressources.Schnapps));
-        Population.text = string.Format(discreteItem, jobManager._unoccupiedWorkers.Count);
+        Population.text = string.Format("{0:,0} ({1:,0} free)", jobManager.PopulationNumber(), jobManager.freeWorkers());
     }
 }

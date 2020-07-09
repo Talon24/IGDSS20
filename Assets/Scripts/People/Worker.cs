@@ -159,6 +159,13 @@ public class Worker : MonoBehaviour
         }
     }
 
+    public void SendHome(){
+        walkProgress = 0;
+        walkQueue.Clear();
+        animator.SetBool("isWalking", false);
+        transform.position = gameObject.GetComponentInParent<Building>().transform.position;
+    }
+
 
     private void Age()
     {

@@ -17,8 +17,15 @@ public class Job
 
     public void AssignWorker(Worker w)
     {
+        if (_worker != null) {
+            throw new System.Exception("Job already assigned to someone!!!");
+        }
         _worker = w;
         _building.WorkerAssignedToBuilding(w);
+    }
+
+    public bool free() {
+        return _worker == null;
     }
 
     // public void RemoveWorker(Worker w)
