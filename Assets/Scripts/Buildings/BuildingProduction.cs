@@ -29,6 +29,8 @@ public abstract class BuildingProduction : Building
 
     public override void Update() {
         base.Update();
+        // This needs to be done befeore efficiency==0 check
+        ressourceManager.buyAllowNegative((Time.deltaTime / (float)ressourceManager.upkeepInterval) * (float)upkeep);
         if (!inProgress){
             startWorking();
         }
@@ -42,7 +44,6 @@ public abstract class BuildingProduction : Building
             progress = 0f;
             inProgress = false;
         }
-        ressourceManager.buyAllowNegative((Time.deltaTime / ressourceManager.upkeepInterval) * upkeep);
     }
 
     public void startWorking(){

@@ -110,4 +110,9 @@ public class RessourceManager : MonoBehaviour
     public void buyAllowNegative(float amount){
         Stockpile[(int)Ressources.Money].amount -= amount;
     }
+
+    public float get(int key)
+    {
+        return Stockpile[key].amount;
+    }
 }

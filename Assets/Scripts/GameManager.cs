@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
                     if (neighbor != null) {tile.edges.Add(neighbor, edge);}
                     if (neighbor.TileType == tile.TileType){edge.gameObject.SetActive(false);}
                 } else {
-                    Instantiate(Edge, tile.position_absolute(), Quaternion.Euler(0, kv.Key - 60f, 0));
+                    Instantiate(Edge, tile.position_absolute(), Quaternion.Euler(0, kv.Key - 60f, 0), tile.transform);
                 }
             }
         }
