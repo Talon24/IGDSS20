@@ -56,6 +56,7 @@ public class Worker : MonoBehaviour
         _navigationManager = FindObjectOfType<NavigationManager>();
         _age = 0;
         ageState = (int)ages.Child;
+        _jobManager.addNonWorker(this);
         positionState = (int)Positions.Home;
         animator = GetComponent<Animator>();
         animator.SetBool("isWalking", false);
@@ -164,6 +165,7 @@ public class Worker : MonoBehaviour
         walkQueue.Clear();
         animator.SetBool("isWalking", false);
         transform.position = gameObject.GetComponentInParent<Building>().transform.position;
+        positionState = (int)Positions.Home;
     }
 
 
@@ -196,6 +198,7 @@ public class Worker : MonoBehaviour
 
     public void BecomeOfAge()
     {
+        _jobManager.removeNonWorker(this);
         _jobManager.RegisterWorker(this);
         if (_age < 14){
             // If forced by being generated with building
@@ -207,11 +210,13 @@ public class Worker : MonoBehaviour
     private void Retire()
     {
         _jobManager.RemoveWorker(this);
+        _jobManager.addNonWorker(this);
     }
 
     private void Die()
     {
         this.GetComponentInParent<Building>().WorkerRemovedFromBuilding(this);
+        _jobManager.removeNonWorker(this);
         Destroy(this.gameObject, 1f);
     }
 

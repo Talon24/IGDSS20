@@ -6868,6 +6868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unoccupiedWorkers: []
+  _nonWorkers: []
 --- !u!1 &2142719950
 GameObject:
   m_ObjectHideFlags: 0
@@ -7547,6 +7548,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_Village_Man_Black
       objectReference: {fileID: 0}
+    - target: {fileID: 5436827496544849559, guid: 62f6137f70807cc47aa5365bc23d4b8a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5436827496545086317, guid: 62f6137f70807cc47aa5365bc23d4b8a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7602,7 +7608,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6732503250847049564, guid: 62f6137f70807cc47aa5365bc23d4b8a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6732503250847049564, guid: 62f6137f70807cc47aa5365bc23d4b8a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 62f6137f70807cc47aa5365bc23d4b8a, type: 3}
 --- !u!1001 &8108791359898092796
 PrefabInstance:

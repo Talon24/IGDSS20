@@ -78,6 +78,7 @@ public class BuildingHousing : Building
         foreach (Worker worker in _workers)
         {
             jobManager.RemoveWorker(worker);
+            jobManager.removeNonWorker(worker);
         }
     }
 }
