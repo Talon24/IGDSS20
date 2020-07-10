@@ -66,7 +66,7 @@ public class MouseManager : MonoBehaviour
         if ((wheel_delta > 0 && pos.y <= max_zoom_in) || (wheel_delta < 0 && pos.y >= max_zoom_out)) {
             wheel_delta = 0;
         }
-        cam.transform.Translate(wheel_delta * Vector3.forward * zoom_speed * Time.deltaTime);
+        cam.transform.Translate(wheel_delta * Vector3.forward * zoom_speed);
 
 
         // click happened
