@@ -104,11 +104,22 @@ public class RessourceManager : MonoBehaviour
     }
 
     public void put(int key, float amount){
-        Stockpile[key].amount += amount;
+        if (amount == float.NaN)
+        {
+            throw new Exception("Not a Number amount was added to the stockpile!");
+        }
+        else
+        {
+            Stockpile[key].amount += amount;
+        }
     }
     
     public void buyAllowNegative(float amount){
-        Stockpile[(int)Ressources.Money].amount -= amount;
+        if (amount == float.NaN){
+            throw new Exception("Not a Number Money was added to the stockpile!");
+        } else {
+            Stockpile[(int)Ressources.Money].amount -= amount;
+        }
     }
 
     public float get(int key)
