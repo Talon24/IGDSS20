@@ -37,6 +37,12 @@ public class BuildingHousing : Building
     public override void Update() {
         base.Update();
 
+        if (_workers.Count == 0){  // if everyone died, repopulate house
+            Worker w = Instantiate(Inhabitant, transform.position, transform.rotation, transform).GetComponent<Worker>();
+            w.BecomeOfAge();
+            WorkerAssignedToBuilding(w);
+        }
+
         ressourceManager.put((int)Ressources.Money, (efficiency * taxAmount * _workers.Count * Time.deltaTime) / ressourceManager.upkeepInterval);
 
         newInhabitantProgress += (Time.deltaTime / newInhabitantTime * efficiency);
@@ -71,6 +77,9 @@ public class BuildingHousing : Building
             accu += worker.happiness;
         }
         accu = accu / _workers.Count;
+        if (_workers.Count == 0){
+            accu = 0f;
+        }
         efficiency = accu;
     }
 

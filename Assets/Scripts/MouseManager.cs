@@ -24,9 +24,9 @@ public class MouseManager : MonoBehaviour
     void Start()
     {
         area_limits2 = manager.get_map_size();
-        #if !UNITY_EDITOR
-        fingerID = 0; 
-        #endif
+        // #if !UNITY_EDITOR
+        // fingerID = 0; 
+        // #endif
     }
 
     // Update is called once per frame

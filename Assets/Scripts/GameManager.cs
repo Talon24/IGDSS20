@@ -332,4 +332,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
     }
+
+    public void Quit(){
+        Application.Quit();
+    }
 }
