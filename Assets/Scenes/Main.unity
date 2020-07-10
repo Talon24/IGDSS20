@@ -2914,7 +2914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pan_speed: 200
-  zoom_speed: 1000
+  zoom_speed: 200
   area_limits_x: {x: 0, y: 500}
   area_limits_y: {x: 0, y: 500}
   max_zoom_in: 10

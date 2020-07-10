@@ -7,8 +7,6 @@ public class MouseManager : MonoBehaviour
 {
     public float pan_speed = 20;
     public float zoom_speed = 1000;
-    public Vector2 area_limits_x = new Vector2(-100, 100);
-    public Vector2 area_limits_y = new Vector2(-100, 100);
     public int max_zoom_in = 10;
     public int max_zoom_out = 100;
     public Camera cam;
@@ -59,13 +57,13 @@ public class MouseManager : MonoBehaviour
         //     pos.y -= pan_speed * Time.deltaTime;
         // }
 
-        pos.x = Mathf.Clamp(pos.x, 50, area_limits2[1]);
+        pos.x = Mathf.Clamp(pos.x, 0, area_limits2[1]);
         pos.z = Mathf.Clamp(pos.z, 0, area_limits2[1]);
         cam.transform.position = pos;
 
         float wheel_delta = Input.mouseScrollDelta.y;
-        float factor = zoom_speed * Time.deltaTime;
-        if ((wheel_delta > 0 && pos.y - factor<= max_zoom_in) || (wheel_delta < 0 && pos.y + factor >= max_zoom_out)) {
+        float factor = zoom_speed;
+        if ((wheel_delta > 0 && pos.y <= max_zoom_in) || (wheel_delta < 0 && pos.y >= max_zoom_out)) {
             wheel_delta = 0;
         }
         cam.transform.Translate(wheel_delta * Vector3.forward * zoom_speed * Time.deltaTime);

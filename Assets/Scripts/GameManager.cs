@@ -317,12 +317,14 @@ public class GameManager : MonoBehaviour
             Debug.Log("Oh no :(");
             finished = true;
             LooseScreen.gameObject.SetActive(true);
+            Time.timeScale = 0;
         }
         if (!finished && ressourceManager.get((int)Ressources.Money) >= 1000000 || 
                 jobManager.PopulationNumber() + jobManager.NonWorkerNumber() >= 1000){
             Debug.Log("gg!");
             WinScreen.gameObject.SetActive(true);
             finished = true;
+            Time.timeScale = 0;
         }
     }
 }
