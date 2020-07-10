@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     private float long_diameter = 10f;
     private float edge_length = 17.323232f;
 
+    public Canvas WinScreen;
+    public Canvas LooseScreen;
+    private bool finished = false;
+
     public Vector2 get_map_size(){
         float z = heightmap.width * 10f;
         float x = heightmap.height * 11.5470f;
@@ -138,6 +142,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         HandleKeyboardInput();
+        CheckGameOver();
     }
 
 
@@ -306,4 +311,18 @@ public class GameManager : MonoBehaviour
         return result;
     }
     #endregion
+
+    void CheckGameOver(){
+        if (!finished && ressourceManager.get((int)Ressources.Money) < 0){
+            Debug.Log("Oh no :(");
+            finished = true;
+            LooseScreen.gameObject.SetActive(true);
+        }
+        if (!finished && ressourceManager.get((int)Ressources.Money) >= 1000000 || 
+                jobManager.PopulationNumber() + jobManager.NonWorkerNumber() >= 1000){
+            Debug.Log("gg!");
+            WinScreen.gameObject.SetActive(true);
+            finished = true;
+        }
+    }
 }
