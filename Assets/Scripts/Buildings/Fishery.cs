@@ -9,5 +9,6 @@ public class Fishery : BuildingProduction
         cost.Add((int)Ressources.Planks, 2);
         inputRessource = null;
         outputRessource = (int)Ressources.Fish;
+        Name = "Fishery";
     }
 }

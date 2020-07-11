@@ -85,6 +85,8 @@ public abstract class BuildingProduction : Building
                 }
             }
             efficiency = Mathf.Clamp((float)(found - (minSurroundingTiles - 1)) / (maxSurroundingTiles - (minSurroundingTiles - 1)), 0f, 1f);
+        } else {
+            efficiency = 1;
         }
         // Apply efficiency from surrounding tiles
         // Apply efficiency from number of workers

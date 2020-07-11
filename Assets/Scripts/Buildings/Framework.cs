@@ -9,5 +9,6 @@ public class Framework : BuildingProduction{
         cost.Add((int)Ressources.Planks, 2);
         inputRessource = (int)Ressources.Wool;
         outputRessource = (int)Ressources.Cloth;
+        Name = "Knittery";
     }
 }
