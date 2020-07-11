@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MouseManager : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class MouseManager : MonoBehaviour
 
     private Vector2 area_limits2;
     public int fingerID = -1;
+    public Canvas InfoField;
     
 
     // Start is called before the first frame update
@@ -48,29 +51,29 @@ public class MouseManager : MonoBehaviour
         {
             pos.z += pan_speed * Time.deltaTime;
         }
-        // if (Input.GetKey("+"))
-        // {
-        //     pos.y += pan_speed * Time.deltaTime;
-        // }
-        // if (Input.GetKey("-"))
-        // {
-        //     pos.y -= pan_speed * Time.deltaTime;
-        // }
-
         pos.x = Mathf.Clamp(pos.x, 0, area_limits2[1]);
         pos.z = Mathf.Clamp(pos.z, 0, area_limits2[1]);
         cam.transform.position = pos;
+        Zoom();
+        MouseMovement();
+        CheckTileClick();
+        ManageInfoWindow();
+    }
+
+    void Zoom(){
+        Vector3 pos = cam.transform.position;
 
         float wheel_delta = Input.mouseScrollDelta.y;
         float factor = zoom_speed;
-        if ((wheel_delta > 0 && pos.y <= max_zoom_in) || (wheel_delta < 0 && pos.y >= max_zoom_out)) {
+        if ((wheel_delta > 0 && pos.y <= max_zoom_in) || (wheel_delta < 0 && pos.y >= max_zoom_out))
+        {
             wheel_delta = 0;
         }
         cam.transform.Translate(wheel_delta * Vector3.forward * zoom_speed);
-
-
-        // click happened
-        if (Input.GetMouseButtonDown(1)) {
+    }
+    void MouseMovement(){
+        if (Input.GetMouseButtonDown(1))
+        {
             // Debug.Log("Button down!");
             RaycastHit hit__;
             Ray ray__ = cam.ScreenPointToRay(Input.mousePosition);
@@ -79,10 +82,13 @@ public class MouseManager : MonoBehaviour
                 {
                     previous_raycast_length = Vector3.Distance(hit__.transform.position, cam.transform.position);
                     previous_raycast_hit = hit__.point;
-                    
+
                 }
-        } else {  // only if not first button
-            if (Input.GetMouseButton(1)) {
+        }
+        else
+        {  // only if not first button
+            if (Input.GetMouseButton(1))
+            {
                 float cam_height_rel = cam.transform.position.y - previous_raycast_hit.y;
 
                 RaycastHit hit___;
@@ -94,19 +100,10 @@ public class MouseManager : MonoBehaviour
                         Vector3 new_hit = hit___.point;
                         Vector3 ray_vector = ray___.direction;
                         Vector3 cam_to_new_hit = cam.transform.position - new_hit;
-                        // Debug.Log(string.Format("Previous: {0}\nCurrent:{1}", previous_raycast_hit, new_hit));
 
                         float vectorfactor = (cam.transform.position.y - previous_raycast_hit.y) / (cam.transform.position.y - new_hit.y);
                         Vector3 target_vector = cam_to_new_hit * vectorfactor;
-
-                        // Debug.Log(string.Format("Vector: {0}", cam.transform.position + new Vector3(target_vector.x, -target_vector.y, target_vector.z)));
-                        // Debug.Log(string.Format("Vector: {0}", target_vector));
-                        // Debug.Log(string.Format("From: {0}\n                          To:{1}", (previous_raycast_hit), (cam.transform.position - target_vector)));
-
-                        // Debug.Log(string.Format("From: {0}\n                          To:{1}", previous_raycast_hit, (cam.transform.position + target_vector)));
                         Vector3 movement = previous_raycast_hit - (cam.transform.position - target_vector);
-                        // Debug.Log(string.Format("From: {0}\n                          To:{1}", previous_raycast_hit, movement));
-                        // Debug.Log(string.Format("From: {0}\n                          To:{1}", previous_raycast_hit, ray_vector));
 
 
                         float pos_x = Mathf.Clamp(cam.transform.position.x + movement.x, 50, area_limits2[0]);
@@ -116,72 +113,44 @@ public class MouseManager : MonoBehaviour
 
                     }
             }
-
-
-
-
-
-
-            // if (Input.GetMouseButton(1))
-            // {
-            //     RaycastHit hit_;
-            //     Ray ray_ = cam.ScreenPointToRay(Input.mousePosition);
-
-            //     if (Physics.Raycast(ray_, out hit_, 2000.0f, 1 << tile_layer_mask))
-            //         if (hit_.transform != null)
-            //         {
-            //             distance = Vector3.Distance(hit_.transform.position, cam.transform.position);
-            //             rayhit = true;
-            //         }
-            //     if (!rayhit) {
-            //         float old_y = cam.transform.position.y;
-            //         float pan_factor = Mathf.Max(((1.0f / (max_zoom_out - old_y) / max_zoom_out) * Time.deltaTime) * 500000.0f, 0.0f);
-            //         // float pan_factor = ((((old_y) / max_zoom_out)) * Time.deltaTime * 100.0f);
-            //         // Screen.currentResolution
-            //         // Debug.Log(string.Format("X: {0}, Y: {1}", Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")));
-            //         cam.transform.Translate(new Vector3(-Input.GetAxis("Mouse X") * pan_factor, -Input.GetAxis("Mouse Y") * pan_factor, 0));
-            //         // Fix elevation of camera
-            //         cam.transform.position = new Vector3(cam.transform.position.x, old_y, cam.transform.position.z);
-            //     } else {
-            //         float old_y = cam.transform.position.y;
-
-            //         float pan_factor = Mathf.Sqrt(((distance * Time.deltaTime) * 0.35f));
-            //         Debug.Log(((distance * Time.deltaTime) * 0.35f));
-            //         cam.transform.Translate(new Vector3(-Input.GetAxis("Mouse X") * pan_factor, -Input.GetAxis("Mouse Y") * pan_factor, 0));
-            //         // Fix elevation of camera
-            //         cam.transform.position = new Vector3(cam.transform.position.x, old_y, cam.transform.position.z);
-            //     }
-            // }
         }
-
-        if (Input.GetMouseButtonDown(0)) {
+    }
+    void CheckTileClick(){
+        if (Input.GetMouseButtonDown(0))
+        {
             RaycastHit hit;
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, 200.0f, 1 << tile_layer_mask & 1 << ui_layer_mask) && !EventSystem.current.IsPointerOverGameObject(fingerID)) {
-                if (hit.transform != null){
+            if (Physics.Raycast(ray, out hit, 200.0f, 1 << tile_layer_mask & 1 << ui_layer_mask) && !EventSystem.current.IsPointerOverGameObject(fingerID))
+            {
+                if (hit.transform != null)
+                {
                     // Debug.Log(string.Format("Clicked tile is {0}", hit.transform.gameObject.name));
                     // Debug.Log(string.Format("Clicked tile is {0}", hit.transform.gameObject.GetType()));
                     bool istile = false;
                     try
-                    {   
+                    {
                         istile = hit.collider.GetComponent<Tile>() != null;
                         // Debug.Log(string.Format("Clicked tile is {0}", tile.name));
                         // Debug.Log(string.Format("Clicked tile is {0}", tile.position));
                     }
                     catch (System.NullReferenceException)
                     {
-                        Debug.Log(string.Format("Nothing targetted."));   
+                        Debug.Log(string.Format("Nothing targetted."));
                     }
-                    if (istile){
+                    if (istile)
+                    {
                         Tile tile = hit.collider.GetComponent<Tile>();
                         Debug.Log(string.Format("Clicked tile is {0}", tile.name));
 
-                        if (manager.debugMode) {
-                            if (tile.navigationPotentials.Count == 0) {
+                        if (manager.debugMode)
+                        {
+                            if (tile.navigationPotentials.Count == 0)
+                            {
                                 Debug.Log(string.Format("No potentials saved"));
                             }
-                            foreach (var item in tile.navigationPotentials){
+                            foreach (var item in tile.navigationPotentials)
+                            {
                                 Debug.Log(string.Format("Potential to {0} is {1}", item.Key, item.Value));
                             }
 
@@ -198,7 +167,9 @@ public class MouseManager : MonoBehaviour
                                 break;
                             }
 
-                        } else {
+                        }
+                        else
+                        {
                             manager.PlaceBuildingOnTile(tile);
                         }
                         // tile.test();
@@ -210,7 +181,65 @@ public class MouseManager : MonoBehaviour
                     }
                 }
             }
+        }
+    }
 
+    void ManageInfoWindow(){
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            InfoField.gameObject.SetActive(true);
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            InfoField.gameObject.SetActive(false);
+        }
+        //Put info field next to cursor
+        InfoField.transform.position = Input.mousePosition;
+        
+        RaycastHit hit;
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, 200.0f, 1 << tile_layer_mask & 1 << ui_layer_mask))
+        {
+            if (hit.transform != null)
+            {
+                try
+                {
+                    List<(string, string)> items;
+                    Tile tile = hit.collider.GetComponent<Tile>();
+                    items = tile.Properties();
+                    string output1 = "";
+                    string output2 = "";
+                    foreach ((string, string) item in items)
+                    {
+                        output1 += item.Item1 + "\n";
+                        output2 += item.Item2 + "\n";
+                    }
+                    foreach (Text t in InfoField.GetComponentsInChildren<Text>())
+                    {
+                        if (t.name == "Keys")
+                        {
+                            t.text = output1; // Force resizing the tooltip
+                            t.text = output1.Remove(output1.Length - 1, 1);
+                        } 
+                        else if (t.name == "Values")
+                        {
+                            t.text = output2; // Force resizing the tooltip
+                            t.text = output2.Remove(output2.Length - 1, 1);
+                        }
+                    }
+
+                    // Text text = InfoField.GetComponent<Text>();
+
+                    
+                }
+                catch (System.NullReferenceException)
+                {
+                    Debug.Log(string.Format("Null pointer reference thrown"));
+                }
+            } else {
+                Debug.Log(string.Format("No transform was hit"));
+            }
         }
     }
 }
+

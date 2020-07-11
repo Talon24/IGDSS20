@@ -81,7 +81,7 @@ MonoBehaviour:
     type: 3}
   newInhabitantProgress: 0
   newInhabitantTime: 30
-  taxAmount: 50
+  taxAmount: 25
 --- !u!1001 &259406672196956846
 PrefabInstance:
   m_ObjectHideFlags: 0

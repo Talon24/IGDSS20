@@ -93,6 +93,7 @@ MonoBehaviour:
   ProcessingTime: 15
   inProgress: 0
   progress: 0
+  WorkerDescription: Lumberjack
 --- !u!1001 &1308281848552961018
 PrefabInstance:
   m_ObjectHideFlags: 0

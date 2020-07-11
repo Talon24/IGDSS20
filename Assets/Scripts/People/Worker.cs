@@ -219,5 +219,17 @@ public class Worker : MonoBehaviour
         _jobManager.removeNonWorker(this);
         Destroy(this.gameObject, 1f);
     }
+    public List<(string, string)> Properties()
+    {
+        List<(string, string)> items = new List<(string, string)>();
+            items.Add(("Worker\n", String.Format("Happiness: {0}\nAge{1}",
+                    happiness.ToString(),
+                    _age.ToString())));
+        return items;
+    }
 
+    public Job job(){
+        Job job = _jobManager.getJob(this);
+        return job;
+    }
 }

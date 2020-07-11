@@ -67,6 +67,7 @@ public class BuildingHousing : Building
             w.BecomeOfAge();
             WorkerAssignedToBuilding(w);
         }
+        Name = "House";
     }
 
     public override void setEfficiency()

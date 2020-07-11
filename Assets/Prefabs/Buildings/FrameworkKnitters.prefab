@@ -82,6 +82,7 @@ MonoBehaviour:
   ProcessingTime: 30
   inProgress: 0
   progress: 0
+  WorkerDescription: Knitter
 --- !u!1001 &3494447806532314261
 PrefabInstance:
   m_ObjectHideFlags: 0

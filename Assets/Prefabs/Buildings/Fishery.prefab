@@ -69,6 +69,7 @@ MonoBehaviour:
   ProcessingTime: 30
   inProgress: 0
   progress: 0
+  WorkerDescription: Fisher
 --- !u!1001 &1104304314716300335
 PrefabInstance:
   m_ObjectHideFlags: 0

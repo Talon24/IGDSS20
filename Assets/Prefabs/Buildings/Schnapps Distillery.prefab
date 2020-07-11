@@ -589,6 +589,7 @@ MonoBehaviour:
   ProcessingTime: 30
   inProgress: 0
   progress: 0
+  WorkerDescription: Distiller
 --- !u!1 &8108791360913724509
 GameObject:
   m_ObjectHideFlags: 0

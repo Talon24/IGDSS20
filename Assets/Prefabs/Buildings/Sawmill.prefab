@@ -163,6 +163,7 @@ MonoBehaviour:
   ProcessingTime: 30
   inProgress: 0
   progress: 0
+  WorkerDescription: Sawmiller
 --- !u!1001 &452074576665218833
 PrefabInstance:
   m_ObjectHideFlags: 0

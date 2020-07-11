@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class Tile : MonoBehaviour{
@@ -161,5 +163,40 @@ public class Tile : MonoBehaviour{
         //     }
         // }
         // return 0f;
+    }
+
+    public List<(string, string)> Properties()
+    {
+        List<(string, string)> items = new List<(string, string)>();
+        items.Add(("Type", Enum.GetName(typeof(TileTypes), TileType)));
+        if (_building != null)
+        {
+            Building b = _building;
+            items.Add(("Building", b.Name));
+            items.Add(("Efficiency", b.efficiency.ToString()));
+            if (b is BuildingHousing)
+            {
+                foreach (Worker w in b._workers)
+                {
+                    string title;
+                    if (w.job() != null){
+                        title = ((BuildingProduction) w.job()._building).WorkerDescription;
+                    } else {
+                        title = "Unemployed";
+                    }
+                    items.Add((title + "\n", String.Format("Happiness: {0:f2}\nAge: {1:f2}",
+                            w.happiness,
+                            w._age)));
+                }
+            }
+            if (b is BuildingProduction)
+            {
+                BuildingProduction bp = (BuildingProduction) b;
+                items.Add(("Progress", bp.progress.ToString("f2")));
+                items.Add(("Jobs total", b._jobs.Count.ToString()));
+                items.Add(("Jobs available", b._jobs.FindAll(x => x._worker == null).Count.ToString()));
+            }
+        }
+    return items;
     }
 }

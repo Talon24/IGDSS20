@@ -111,6 +111,7 @@ MonoBehaviour:
   ProcessingTime: 30
   inProgress: 0
   progress: 0
+  WorkerDescription: Farmer
 --- !u!1001 &649073074104300828
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -262,6 +262,7 @@ MonoBehaviour:
   ProcessingTime: 30
   inProgress: 0
   progress: 0
+  WorkerDescription: Shepherd
 --- !u!1 &1040381325622728262
 GameObject:
   m_ObjectHideFlags: 0

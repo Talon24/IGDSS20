@@ -13,6 +13,7 @@ public abstract class BuildingProduction : Building
     public int ProcessingTime;
     public bool inProgress;
     public float progress;
+    public string WorkerDescription;
 
     public void Awake(){
     }
@@ -21,7 +22,7 @@ public abstract class BuildingProduction : Building
     {
         for (int workplace = 0; workplace < maxWorkers; workplace++)
         {
-            Job job = new Job(this, transform.name);
+            Job job = new Job(this, WorkerDescription);
             _jobs.Add(job);
             jobManager.RegisterJob(job);
         }
@@ -73,21 +74,19 @@ public abstract class BuildingProduction : Building
 
     public override void setEfficiency()
     {
-        if (SurroundingTile == null)
+        if (SurroundingTile != null)
         {
-            efficiency = 1;
-            return;
-        }
-        int found = 0;
-        foreach (Tile surroundTile in tile.neighbors)
-        {
-            if (SurroundingTile.GetComponent<Tile>().TileType == surroundTile.TileType)
+            float found = 0f;            
+            foreach (Tile surroundTile in tile.neighbors)
             {
-                found += 1;
+                if (SurroundingTile.GetComponent<Tile>().TileType == surroundTile.TileType)
+                {
+                    found += 1;
+                }
             }
+            efficiency = Mathf.Clamp((float)(found - (minSurroundingTiles - 1)) / (maxSurroundingTiles - (minSurroundingTiles - 1)), 0f, 1f);
         }
         // Apply efficiency from surrounding tiles
-        efficiency = Mathf.Clamp((float)(found - (minSurroundingTiles - 1)) / (maxSurroundingTiles - (minSurroundingTiles - 1)), 0f, 1f);
         // Apply efficiency from number of workers
         efficiency *= (float)_workers.Count / maxWorkers;
         // Apply efficiency from workers happiness
