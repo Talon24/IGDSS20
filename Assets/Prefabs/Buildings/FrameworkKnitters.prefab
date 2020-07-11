@@ -76,9 +76,9 @@ MonoBehaviour:
   maxSurroundingTiles: 0
   ressourceManager: {fileID: 0}
   Name: 
-  initialCost: 0
-  upkeep: 0
-  outputAmount: 1
+  initialCost: 400
+  upkeep: 50
+  outputAmount: 5
   ProcessingTime: 30
   inProgress: 0
   progress: 0

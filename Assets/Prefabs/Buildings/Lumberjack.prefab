@@ -87,8 +87,8 @@ MonoBehaviour:
   maxSurroundingTiles: 6
   ressourceManager: {fileID: 0}
   Name: Lumberjack
-  initialCost: 0
-  upkeep: 0
+  initialCost: 100
+  upkeep: 10
   outputAmount: 1
   ProcessingTime: 15
   inProgress: 0

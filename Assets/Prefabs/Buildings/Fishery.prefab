@@ -65,7 +65,7 @@ MonoBehaviour:
   Name: Fishery
   initialCost: 100
   upkeep: 40
-  outputAmount: 1
+  outputAmount: 25
   ProcessingTime: 30
   inProgress: 0
   progress: 0

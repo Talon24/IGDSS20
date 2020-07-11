@@ -15,7 +15,7 @@ MonoBehaviour:
   _age: 0
   secondsToAge: 15
   happiness: 0
-  fishValue: 10
+  fishValue: 5
   clothValue: 5
   schnappsValue: 5
   fishProcessingTime: 60

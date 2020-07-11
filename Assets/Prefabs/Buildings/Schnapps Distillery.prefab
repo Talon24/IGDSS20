@@ -585,7 +585,7 @@ MonoBehaviour:
   Name: 
   initialCost: 100
   upkeep: 40
-  outputAmount: 1
+  outputAmount: 5
   ProcessingTime: 30
   inProgress: 0
   progress: 0
